@@ -1,0 +1,15 @@
+[
+  {
+    "auth": {
+      "id": "0512e76b-a88a-49ff-b5ac-33980e243add",
+      "login": "carrot",
+      "password": "25d8geB3neqtrVn"
+    },
+    "data": {
+      "id": "fef5dab2-94ea-4308-87dc-ca71da92cc77",
+      "firstName": "Admin",
+      "lastName": "Moderator",
+      "patronymic": null
+    }
+  }
+]

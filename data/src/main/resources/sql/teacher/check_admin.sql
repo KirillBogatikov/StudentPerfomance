@@ -1,0 +1,1 @@
+SELECT "auth" FROM "teacher" WHERE "id" = ?
