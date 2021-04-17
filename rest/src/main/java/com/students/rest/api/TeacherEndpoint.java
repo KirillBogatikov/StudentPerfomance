@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.students.db.model.Teacher;
-import com.students.service.ListResult;
 import com.students.service.TeacherService;
 
 @RestController
@@ -33,52 +31,39 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 			return status;
 		}
 		
-		ListResult<Teacher> result;
-		if (query == null) {
-			result = service.list(offset, limit);
-		} else {
-			result = service.search(query, offset, limit);
-		}
-
-		if (result.getError() != null) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		var result = service.list(query, offset, limit);
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
 		}
 		
-		if (result.isBoundsIncorrect() || result.isQueryIncorrect()) {
+		if (result.isQueryIncorrect()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 
-		return ResponseEntity.ok(result.getData());
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	private ResponseEntity<Map<String, Object>> save(Teacher teacher) {
+	@PutMapping()
+	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Teacher teacher) {
+		ResponseEntity<Map<String, Object>> status = auth(token);
+		if (status != null) {
+			return status;
+		}
+		
 		var result = service.save(teacher);
-		var map = result.getData();
-		if (map.isEmpty()) {
-			map.put("id", teacher.getId());
-			return new ResponseEntity<>(map, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
-	}
-	
-	@PostMapping("")
-	public ResponseEntity<Map<String, Object>> create(@RequestHeader("Authorization") String token, @RequestBody Teacher teacher) {
-		ResponseEntity<Map<String, Object>> status = auth(token);
-		if (status != null) {
-			return status;
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
 		}
 		
-		return save(teacher);
-	}
-	
-	@PutMapping("{id}")
-	public ResponseEntity<Map<String, Object>> update(@RequestHeader("Authorization") String token, @RequestBody Teacher teacher, String id) {
-		ResponseEntity<Map<String, Object>> status = auth(token);
-		if (status != null) {
-			return status;
+		if (!result.isObjectFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
-		return save(teacher);
+		if (!result.isValid()) {
+			return new ResponseEntity<>(result.getValidation(), HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@DeleteMapping("{id}")
@@ -89,12 +74,9 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 		}
 		
 		var result = service.delete(UUID.fromString(id));
-		if (result.getError() != null) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		if (result.getData()) {
+		if (result == null) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
