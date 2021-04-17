@@ -77,7 +77,7 @@ public class Server extends WebMvcConfigurationSupport {
 	public TeacherService teachers() {
 		if (teacherService == null) {
 			var repo = new TeacherRepository(database);
-			teacherService = new TeacherService(repo);
+			teacherService = new TeacherService(repo, cfg.salt, cfg.saltPosition);
 		}
 		
 		return teacherService;
