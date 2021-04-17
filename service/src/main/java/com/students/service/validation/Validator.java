@@ -20,4 +20,12 @@ public class Validator {
 		
 		return Incorrect;
 	}
+	
+	public static boolean isBoundsCorrect(int offset, int limit) {
+		return offset >= 0 && limit > 1 && limit <= 1000;
+	}
+	
+	public static boolean isQuerySafe(String query) {
+		return query.toLowerCase().matches(".*(select|drop|create|table|insert|delete|update|truncate).*");
+	}
 }
