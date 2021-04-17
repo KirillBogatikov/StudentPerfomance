@@ -8,9 +8,11 @@ import static com.students.util.Merger.merge;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import com.students.db.model.Discipline;
 import com.students.db.model.Teacher;
 import com.students.db.sql.TeacherRepository;
 import com.students.service.result.ListResult;

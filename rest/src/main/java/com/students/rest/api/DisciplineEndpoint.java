@@ -22,7 +22,7 @@ public class DisciplineEndpoint extends AuthorizedEndpoint {
 	@Autowired
 	private DisciplineService service;
 	
-	@GetMapping(path = {"/list", "/search"})
+	@GetMapping(path = {"list", "search"})
 	public ResponseEntity<?> list(@RequestHeader("Authorization") String token, String query, int offset, int limit) {
 		var status = auth(token);
 		if (status != null) {
@@ -52,7 +52,7 @@ public class DisciplineEndpoint extends AuthorizedEndpoint {
 		if (result.isSuccess()) {
 			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
 		}
-		if (!result.isObjectFound()) {
+		if (result.isNotFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		

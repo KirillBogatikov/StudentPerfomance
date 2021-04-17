@@ -24,7 +24,7 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 	@Autowired
 	private TeacherService service;
 
-	@GetMapping(path = {"/list", "/search"})
+	@GetMapping(path = {"list", "search"})
 	public ResponseEntity<List<Teacher>> list(@RequestHeader("Authorization") String token, String query, int offset, int limit) {
 		ResponseEntity<List<Teacher>> status = auth(token);
 		if (status != null) {
@@ -32,6 +32,10 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 		}
 		
 		var result = service.list(query, offset, limit);
+		if (result.getData() == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 		if (result.isSuccess()) {
 			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
 		}
@@ -55,7 +59,7 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
 		}
 		
-		if (!result.isObjectFound()) {
+		if (result.isNotFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		

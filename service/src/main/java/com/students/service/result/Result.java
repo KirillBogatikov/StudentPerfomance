@@ -1,6 +1,7 @@
 package com.students.service.result;
 
 public class Result<T> {
+	private boolean notFound;
 	private T data;
 	private String error;
 	
@@ -28,7 +29,15 @@ public class Result<T> {
 		this.error = error;
 	}
 	
+	public boolean isNotFound() {
+		return notFound;
+	}
+
+	public void setNotFound(boolean notFound) {
+		this.notFound = notFound;
+	}
+
 	public boolean isSuccess() {
-		return error == null;
+		return error == null && !notFound;
 	}
 }

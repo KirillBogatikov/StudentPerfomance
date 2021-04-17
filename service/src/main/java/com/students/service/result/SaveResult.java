@@ -6,16 +6,15 @@ import java.util.UUID;
 import com.students.service.validation.ValidationResult;
 
 public class SaveResult extends Result<UUID> {
-	private boolean objectFound;
 	private Map<String, ValidationResult> validation;
 	
 	public SaveResult(UUID data) {
 		this(data, true);
 	}
 	
-	public SaveResult(UUID data, boolean objectFound) {
+	public SaveResult(UUID data, boolean notFound) {
 		super(data);
-		setObjectFound(objectFound);
+		setNotFound(notFound);
 	}
 	
 	public SaveResult(String error) {
@@ -26,14 +25,6 @@ public class SaveResult extends Result<UUID> {
 	public SaveResult(Map<String, ValidationResult> validation) {
 		super(null);
 		setValidation(validation);
-	}
-
-	public boolean isObjectFound() {
-		return objectFound;
-	}
-	
-	public void setObjectFound(boolean objectFound) {
-		this.objectFound = objectFound;
 	}
 	
 	public Map<String, ValidationResult> getValidation() {
@@ -49,6 +40,6 @@ public class SaveResult extends Result<UUID> {
 	}
 	
 	public boolean isSuccess() {
-		return super.isSuccess() && isValid() && getData() != null && objectFound;
+		return super.isSuccess() && isValid() && getData() != null;
 	}
 }
