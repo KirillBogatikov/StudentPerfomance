@@ -40,35 +40,24 @@ public class TeacherRepository extends SqlRepository {
 		return database.query(Teacher.class, get, id);
 	}
 
-	public UUID save(Teacher t) throws SQLException {
-		var auth = t.getAuth();
-		var data = t.getData();
-		UUID id = t.getId(), authId = auth.getId(), dataId = data.getId();
-		
-		var sql = update;
-		var args = new Object[] {
-			auth.getLogin(), auth.getPasswordHash(), auth.getId(), 
-			data.getFirstName(), data.getLastName(), data.getPatronymic(), data.getId()
-		};
-		
-		if (id == null) {
-			id = UUID.randomUUID();
-			authId = UUID.randomUUID();
-			dataId = UUID.randomUUID();
-			sql = insert;
-			args = new Object[] {
-				authId, auth.getLogin(), auth.getPasswordHash(),  
-				dataId, data.getFirstName(), data.getLastName(), data.getPatronymic(), 
-				id, authId, dataId
-			};
+	public boolean update(Teacher t) throws SQLException {
+		if (database.query(r -> 1, get, t.getId()) == null) {
+			return false;
 		}
 		
-		database.execute(sql, args);
-		
-		t.setId(id);
-		t.getAuth().setId(authId);
-		t.getData().setId(dataId);
-		return id;
+		var auth = t.getAuth();
+		var data = t.getData();
+		database.execute(update, auth.getLogin(), auth.getPasswordHash(), auth.getId(), 
+			data.getFirstName(), data.getLastName(), data.getPatronymic(), data.getId());
+		return true;
+	}
+	
+	public void insert(Teacher t) throws SQLException {
+		var auth = t.getAuth();
+		var data = t.getData();
+		database.execute(insert, auth.getId(), auth.getLogin(), auth.getPasswordHash(), 
+			data.getId(), data.getFirstName(), data.getLastName(), data.getPatronymic(), 
+			t.getId(), auth.getId(), data.getId());
 	}
 
 	public void delete(UUID id) throws SQLException {

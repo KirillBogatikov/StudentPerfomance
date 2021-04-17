@@ -80,7 +80,7 @@ public class SqlImporter extends SqlRepository {
 			var auth = t.getAuth();
 			
 			auth.setPasswordHash(Hash.hash(auth.getPassword(), salt, saltPosition));
-			repo.save(t);
+			repo.insert(t);
 		}
 		
 		saveImport("teacher");
