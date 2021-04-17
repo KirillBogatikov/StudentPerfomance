@@ -1,7 +1,10 @@
 package com.students.service;
 
 import static com.students.service.validation.ValidationResult.Required;
+import static com.students.service.validation.Validator.isBoundsCorrect;
+import static com.students.service.validation.Validator.isQuerySafe;
 import static com.students.service.validation.Validator.validate;
+import static com.students.util.Merger.merge;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -10,58 +13,41 @@ import java.util.UUID;
 
 import com.students.db.model.Teacher;
 import com.students.db.sql.TeacherRepository;
+import com.students.service.result.ListResult;
+import com.students.service.result.SaveResult;
+import com.students.service.validation.ValidationResult;
+import com.students.util.Hash;
 
 public class TeacherService {
 	private TeacherRepository repo;
+	private String salt;
+	private int saltPosition;
 
-	public TeacherService(TeacherRepository repo) {
+	public TeacherService(TeacherRepository repo, String salt, int saltPosition) {
 		super();
 		this.repo = repo;
+		this.salt = salt;
+		this.saltPosition = saltPosition;
 	}
 
-	public ListResult<Teacher> list(int offset, int limit) {
-		var result = new ListResult<Teacher>();
-		
-		if (offset < 0 || limit < 1 || limit > 1000) {
-			result.setBoundsIncorrect(true);
-			return result;
+	public ListResult<Teacher> list(String query, int offset, int limit) {
+		if (!isBoundsCorrect(offset, limit)) {
+			return new ListResult<>(true);
+		}
+		if (!isQuerySafe(query)) {
+			return new ListResult<>(true);
 		}
 		
 		try {
-			result.setData(repo.list(offset, limit));
+			return new ListResult<>(repo.list(offset, limit));
 		} catch (SQLException e) {
 			e.printStackTrace();
-			result.setError(e.getMessage());
+			return new ListResult<>(e.getMessage());
 		}
-		
-		return result;
-	}
-
-	public ListResult<Teacher> search(String query, int offset, int limit) {
-		var result = new ListResult<Teacher>();
-		
-		if (offset < 0 || limit < 1 || limit > 1000) {
-			result.setBoundsIncorrect(true);
-			return result;
-		}
-		
-		if (query.toLowerCase().matches("select|drop|create|table|insert|delete|update|truncate")) {
-			result.setQueryIncorrect(true);
-			return result;
-		}
-		
-		try {
-			result.setData(repo.search(query, offset, limit));
-		} catch (SQLException e) {
-			e.printStackTrace();
-			result.setError(e.getMessage());
-		}
-		
-		return result;
 	}
 	
-	private Map<String, Object> validateInstance(Teacher t) {
-		var map = new HashMap<String, Object>();
+	private Map<String, ValidationResult> validateInstance(Teacher t) {
+		var map = new HashMap<String, ValidationResult>();
 		var auth = t.getAuth();
 		var data = t.getData();
 		
@@ -85,31 +71,57 @@ public class TeacherService {
 		return map;
 	}
 	
-	public Result<Map<String, Object>> save(Teacher t) {
-		var result = new Result<Map<String, Object>>();
-		var map = validateInstance(t);
-		if(map.isEmpty()) {
-			try {
-				repo.save(t);
-			} catch(SQLException e) {
-				e.printStackTrace();
-				result.setError(e.getMessage());
-			}
-		}
-		result.setData(map);
+	private void mergeObjects(Teacher t, Teacher old) {
+		var newAuth = t.getAuth();
+		var oldAuth = old.getAuth();
 		
-		return result;
+		merge(newAuth::setLogin, newAuth::getLogin, oldAuth::getLogin);
+		merge(newAuth::setPasswordHash, newAuth::getPasswordHash, oldAuth::getPasswordHash);
+		
+		var newData = t.getData();
+		var oldData = old.getData();
+		
+		merge(newData::setFirstName, newData::getFirstName, oldData::getFirstName);
+		merge(newData::setLastName, newData::getLastName, oldData::getLastName);
+		merge(newData::setPatronymic, newData::getPatronymic, oldData::getPatronymic);
 	}
 	
-	public Result<Boolean> delete(UUID id) {
+	public SaveResult save(Teacher t) {
+		var map = validateInstance(t);
+		
+		if(map.isEmpty()) {
+			try {
+				var auth = t.getAuth();
+				if (auth.getPassword() != null) {
+					auth.setPasswordHash(Hash.hash(auth.getPassword(), salt, saltPosition));
+				}
+				
+				if (t.getId() == null) {
+					repo.insert(t);
+					return new SaveResult(t.getId());
+				} else {
+					var old = repo.get(t.getId());
+					mergeObjects(t, old);					
+					var u = repo.update(t);
+					return new SaveResult(t.getId(), u);
+				}
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+				return new SaveResult(e.getMessage());
+			}
+		}
+		
+		return new SaveResult(map);
+	}
+	
+	public String delete(UUID id) {
 		try {
 			repo.delete(id);
-			return new Result<>(true);
+			return null;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			var r = new Result<>(false);
-			r.setError(e.getMessage());
-			return r;
+			return e.getMessage();
 		}
 	}
 }
