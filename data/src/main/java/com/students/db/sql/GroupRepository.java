@@ -9,14 +9,13 @@ import java.util.UUID;
 import com.students.db.model.Discipline;
 import com.students.db.model.Group;
 import com.students.db.model.Mark;
-import com.students.db.model.Plan;
 import com.students.db.model.Student;
 import com.students.db.repo.Database;
 
 public class GroupRepository extends SqlRepository {
-	private static final String DIR = "group";
+	private static final String DIR = "sql/group";
 	private static final String has = readText(DIR, "has.sql"), list = readText(DIR, "list.sql"),
-			search = readText(DIR, "search.sql"), listStudents = readText(DIR, "listStudents.sql"),
+			search = readText(DIR, "search.sql"), listStudents = readText(DIR, "list_students.sql"),
 			insert = readText(DIR, "insert.sql"), update = readText(DIR, "update.sql"),
 			delete = readText(DIR, "delete.sql"), perfomance = readText(DIR, "perfomance.sql");
 

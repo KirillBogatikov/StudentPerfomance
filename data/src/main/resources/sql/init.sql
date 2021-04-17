@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS "teacher" (
 
 CREATE TABLE IF NOT EXISTS "student" (
     "id" uuid PRIMARY KEY,
-    "personal" uuid REFERENCES "personal_data"("id") ON DELETE CASCADE,
+    "data" uuid REFERENCES "personal_data"("id") ON DELETE CASCADE,
     "contact" uuid REFERENCES "contact"("id") ON DELETE CASCADE
 );
 
