@@ -1,4 +1,4 @@
-package com.students.service;
+package com.students.service.result;
 
 public class Result<T> {
 	private T data;
@@ -26,5 +26,9 @@ public class Result<T> {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+	
+	public boolean isSuccess() {
+		return error == null;
 	}
 }

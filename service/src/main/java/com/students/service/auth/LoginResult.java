@@ -1,6 +1,6 @@
 package com.students.service.auth;
 
-import com.students.service.Result;
+import com.students.service.result.Result;
 
 public class LoginResult extends Result<Token> {
 	private boolean userFound;

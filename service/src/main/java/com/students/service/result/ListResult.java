@@ -1,10 +1,27 @@
-package com.students.service;
+package com.students.service.result;
 
 import java.util.List;
 
 public class ListResult<T> extends Result<List<T>> {
 	private boolean queryIncorrect;
-	private boolean boundsIncorrect;
+	
+	public ListResult() {
+		this(false);
+	}
+	
+	public ListResult(boolean queryIncorrect) {
+		super(null);
+		this.queryIncorrect = queryIncorrect;
+	}
+	
+	public ListResult(List<T> data) {
+		super(data);
+	}
+	
+	public ListResult(String error) {
+		super(null);
+		setError(error);
+	}
 	
 	public boolean isQueryIncorrect() {
 		return queryIncorrect;
@@ -13,13 +30,10 @@ public class ListResult<T> extends Result<List<T>> {
 	public void setQueryIncorrect(boolean queryIncorrect) {
 		this.queryIncorrect = queryIncorrect;
 	}
-
-	public boolean isBoundsIncorrect() {
-		return boundsIncorrect;
-	}
-
-	public void setBoundsIncorrect(boolean boundsIncorrect) {
-		this.boundsIncorrect = boundsIncorrect;
+	
+	@Override
+	public boolean isSuccess() {
+		return super.isSuccess() && !queryIncorrect;
 	}
 		
 }
