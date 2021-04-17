@@ -1,0 +1,1 @@
+DELETE FROM "group" CASCADE WHERE "id" = ?

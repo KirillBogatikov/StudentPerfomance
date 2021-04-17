@@ -17,21 +17,10 @@ CREATE TABLE IF NOT EXISTS "contact" (
     "email" text
 );
 
-CREATE TABLE IF NOT EXISTS "discipline" (
-    "id" uuid PRIMARY KEY,
-    "name" text NOT NULL
-);
-
 CREATE TABLE IF NOT EXISTS "teacher" (
     "id" uuid PRIMARY KEY,
     "auth" uuid REFERENCES "auth_data" ("id") ON DELETE CASCADE,
     "data" uuid REFERENCES "personal_data"("id") ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS "teacher_discipline" (
-    "id" uuid PRIMARY KEY,
-    "teacher" uuid REFERENCES "teacher"("id") ON DELETE CASCADE,
-    "discipline" uuid REFERENCES "discipline"("id") ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS "student" (
@@ -61,8 +50,8 @@ CREATE TABLE IF NOT EXISTS "plan" (
 CREATE TABLE IF NOT EXISTS "plan_discipline" (
     "id" uuid PRIMARY KEY,
     "plan" uuid REFERENCES "plan"("id") ON DELETE CASCADE,
-    "discipline" uuid REFERENCES "discipline"("id") ON DELETE CASCADE,
     "teacher" uuid REFERENCES "teacher"("id") ON DELETE CASCADE,
+    "name" text,
     "hours" smallint
 );
 

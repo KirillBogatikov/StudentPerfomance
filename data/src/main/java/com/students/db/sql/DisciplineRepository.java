@@ -7,31 +7,34 @@ import java.util.List;
 import java.util.UUID;
 
 import com.students.db.model.Discipline;
+import com.students.db.model.Group;
 import com.students.db.model.Plan;
 import com.students.db.repo.Database;
 
 public class DisciplineRepository extends SqlRepository {
 	private static final String DIR = "sql/discipline";
-	private static final String has = readText(DIR, "has.sql"),
-								list = readText(DIR, "list.sql"),
-								search = readText(DIR, "search.sql"),
-								insert = readText(DIR, "insert.sql"),
-								update = readText(DIR, "update.sql"),
-								delete = readText(DIR, "delete.sql");
+	private static final String has = readText(DIR, "has.sql"), list = readText(DIR, "list.sql"),
+			search = readText(DIR, "search.sql"), insert = readText(DIR, "insert.sql"),
+			update = readText(DIR, "update.sql"), delete = readText(DIR, "delete.sql");
 
 	public DisciplineRepository(Database database) {
 		super(database);
-		
+
 		mapping.register(Discipline.class, r -> {
 			var d = new Discipline();
-			
+
 			d.setId(r.getObject("discipline_id", UUID.class));
 			d.setName(r.getString("discipline_name"));
-			
+
 			return d;
 		});
 		mapping.register(Plan.class, r -> {
 			var p = new Plan();
+			
+			p.setId(r.getObject("plan_id", UUID.class));
+			p.setSemester(r.getInt("plan_semester"));
+			p.setGroup(mapping.forType(Group.class).process(r));
+			p.setDisciplines(mapping.forList(Discipline.class).process(r));
 			
 			return p;
 		});
@@ -48,12 +51,12 @@ public class DisciplineRepository extends SqlRepository {
 	public void insert(Discipline d) throws SQLException {
 		database.execute(insert, d.getId(), d.getName());
 	}
-	
+
 	public boolean update(Discipline d) throws SQLException {
 		if (database.query(r -> 1, has, d.getId()) == null) {
 			return false;
 		}
-		
+
 		database.execute(update, d.getName(), d.getId());
 		return true;
 	}

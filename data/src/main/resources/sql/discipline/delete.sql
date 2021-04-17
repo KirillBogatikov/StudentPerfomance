@@ -1,0 +1,1 @@
+DELETE FROM "discipline" CASCADE WHERE "id" = ?

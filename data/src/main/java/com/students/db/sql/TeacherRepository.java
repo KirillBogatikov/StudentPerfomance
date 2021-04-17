@@ -1,5 +1,7 @@
 package com.students.db.sql;
 
+import static com.students.util.Extractor.readText;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
@@ -8,14 +10,13 @@ import com.students.db.model.Auth;
 import com.students.db.model.PersonalData;
 import com.students.db.model.Teacher;
 import com.students.db.repo.Database;
-import com.students.util.Extractor;
 
 public class TeacherRepository extends SqlRepository {
 	private static final String DIR = "sql/teacher";
-	private static final String get = Extractor.readText(DIR, "get_by_id.sql"),
-			insert = Extractor.readText(DIR, "insert.sql"), update = Extractor.readText(DIR, "update.sql"),
-			delete = Extractor.readText(DIR, "delete.sql"), list = Extractor.readText(DIR, "list.sql"),
-			search = Extractor.readText(DIR, "search.sql");
+	private static final String get = readText(DIR, "get_by_id.sql"), has = readText(DIR, "has.sql"),
+			insert = readText(DIR, "insert.sql"), update = readText(DIR, "update.sql"),
+			delete = readText(DIR, "delete.sql"), list = readText(DIR, "list.sql"),
+			search = readText(DIR, "search.sql");
 
 	public TeacherRepository(Database database) {
 		super(database);
@@ -44,20 +45,19 @@ public class TeacherRepository extends SqlRepository {
 		if (database.query(r -> 1, get, t.getId()) == null) {
 			return false;
 		}
-		
+
 		var auth = t.getAuth();
 		var data = t.getData();
-		database.execute(update, auth.getLogin(), auth.getPasswordHash(), auth.getId(), 
-			data.getFirstName(), data.getLastName(), data.getPatronymic(), data.getId());
+		database.execute(update, auth.getLogin(), auth.getPasswordHash(), auth.getId(), data.getFirstName(),
+				data.getLastName(), data.getPatronymic(), data.getId());
 		return true;
 	}
-	
+
 	public void insert(Teacher t) throws SQLException {
 		var auth = t.getAuth();
 		var data = t.getData();
-		database.execute(insert, auth.getId(), auth.getLogin(), auth.getPasswordHash(), 
-			data.getId(), data.getFirstName(), data.getLastName(), data.getPatronymic(), 
-			t.getId(), auth.getId(), data.getId());
+		database.execute(insert, auth.getId(), auth.getLogin(), auth.getPasswordHash(), data.getId(),
+				data.getFirstName(), data.getLastName(), data.getPatronymic(), t.getId(), auth.getId(), data.getId());
 	}
 
 	public void delete(UUID id) throws SQLException {
@@ -65,4 +65,7 @@ public class TeacherRepository extends SqlRepository {
 		database.execute(delete, t.getId(), t.getAuth().getId(), t.getData().getId());
 	}
 
+	public boolean has(UUID id) throws SQLException {
+		return database.query(r -> 1, has, id) != null;
+	}
 }

@@ -1,13 +1,12 @@
 package com.students.db.model;
 
-import java.util.List;
 import java.util.UUID;
 
 public class Group {
 	private UUID id;
 	private String code;
 	private int duration;
-	private List<Student> students;
+	private int count;
 	
 	public Group() {
 		super();
@@ -37,11 +36,11 @@ public class Group {
 		this.duration = duration;
 	}
 
-	public List<Student> getStudents() {
-		return students;
+	public int getCount() {
+		return count;
 	}
 
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}	
+	public void setCount(int count) {
+		this.count = count;
+	}
 }

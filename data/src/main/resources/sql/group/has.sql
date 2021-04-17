@@ -1,0 +1,1 @@
+SELECT "code" FROM "group" WHERE "id" = ?
