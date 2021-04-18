@@ -78,9 +78,13 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 		}
 		
 		var result = service.delete(UUID.fromString(id));
-		if (result == null) {
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if (result.isSuccess()) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
+		
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }

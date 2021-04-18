@@ -1,36 +1,40 @@
 package com.students.rest.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.students.db.model.Group;
-import com.students.service.GroupService;
-import com.students.service.result.ListResult;
-import com.students.service.result.SaveResult;
+import com.students.db.model.Student;
+import com.students.db.model.Teacher;
+import com.students.service.StudentService;
 
 @RestController
-@RequestMapping("api/group")
-public class GroupEndpoint extends AuthorizedEndpoint {
+@RequestMapping("api/student")
+public class StudentEndpoint extends AuthorizedEndpoint {
 	@Autowired
-	private GroupService service;
+	private StudentService service;
 	
-	@GetMapping(path = {"list", "search"})
+	@GetMapping(path = {"search", "list"})
 	public ResponseEntity<?> list(@RequestHeader("Authorization") String token, String query, int offset, int limit) {
-		var status = auth(token);
+		ResponseEntity<List<Teacher>> status = auth(token);
 		if (status != null) {
 			return status;
 		}
 		
-		ListResult<Group> result = service.list(query, offset, limit);
+		var result = service.list(query, offset, limit);
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 		if (result.isSuccess()) {
 			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
 		}
@@ -38,62 +42,24 @@ public class GroupEndpoint extends AuthorizedEndpoint {
 		if (result.isQueryIncorrect()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping("{id}/students")
-	public ResponseEntity<?> getStudents(@RequestHeader("Authorization") String token, String id) {
-		var status = auth(token);
+	@PutMapping
+	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Student s) {
+		ResponseEntity<List<Teacher>> status = auth(token);
 		if (status != null) {
 			return status;
 		}
 		
-		var result = service.listStudents(id);
-		if (result.isNotFound()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		
-		if (result.isSuccess()) {
-			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	@PostMapping("{newGroup}/student/{studentId}")
-	public ResponseEntity<?> moveStudent(@RequestHeader("Authorization") String token, String newGroup, String studentId) {
-		var status = auth(token);
-		if (status != null) {
-			return status;
-		}
-		
-		var result = service.moveStudent(newGroup, studentId);
+		var result = service.save(s);
 		if (result.isNotFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
 		if (result.isSuccess()) {
 			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	@PutMapping()
-	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Group g) {
-		var status = auth(token);
-		if (status != null) {
-			return status;
-		}
-		
-		SaveResult result = service.save(g);
-		if (result.isSuccess()) {
-			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
-		}
-		
-		if (result.isNotFound()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		
 		if (!result.isValid()) {
@@ -105,7 +71,7 @@ public class GroupEndpoint extends AuthorizedEndpoint {
 	
 	@DeleteMapping("{id}")
 	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, String id) {
-		var status = auth(token);
+		ResponseEntity<List<Teacher>> status = auth(token);
 		if (status != null) {
 			return status;
 		}

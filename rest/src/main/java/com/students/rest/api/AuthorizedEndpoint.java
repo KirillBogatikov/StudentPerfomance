@@ -26,6 +26,10 @@ public abstract class AuthorizedEndpoint {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
+		if (result.getData() == null) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
 		if (result.getData().isValid()) {
 			return null;
 		}

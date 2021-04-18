@@ -66,8 +66,11 @@ public class DisciplineEndpoint extends AuthorizedEndpoint {
 			return status;
 		}
 		
-		String error = service.delete(id);
-		if (error == null) {
+		var result = service.delete(id);
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if (result.isSuccess()) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
