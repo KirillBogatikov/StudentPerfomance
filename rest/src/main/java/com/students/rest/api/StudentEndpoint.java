@@ -46,6 +46,25 @@ public class StudentEndpoint extends AuthorizedEndpoint {
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@GetMapping("{id}/group")
+	public ResponseEntity<?> getGroup(@RequestHeader("Authorization") String token, String id) {
+		ResponseEntity<List<Teacher>> status = auth(token);
+		if (status != null) {
+			return status;
+		}
+		
+		var result = service.getStudentGroup(id);
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 	@PutMapping
 	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Student s) {
 		ResponseEntity<List<Teacher>> status = auth(token);

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import com.students.db.model.Group;
 import com.students.db.model.Student;
 import com.students.db.sql.StudentRepository;
 import com.students.service.result.ListResult;
@@ -41,6 +42,19 @@ public class StudentService {
 			e.printStackTrace();
 			return new ListResult<>(e.getMessage());
 		}
+	}
+	
+	public Result<Group> getStudentGroup(String id) {
+		var result = new Result<Group>();
+		try {
+			var data = repo.getGroup(UUID.fromString(id));
+			result.setData(data);
+			result.setNotFound(data == null);
+		} catch(SQLException e) {
+			e.printStackTrace();
+			result.setError(e.getMessage());
+		}
+		return result;		
 	}
 	
 	private Map<String, ValidationResult> validateInstance(Student s) {
