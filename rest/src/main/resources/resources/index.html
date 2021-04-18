@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<title>Perfomanto - </title>
+		<meta charset="utf-8"/>
+		<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+		<link href="/css/fonts.css?1" rel="stylesheet"/>
+		<link href="/css/index.css?1" rel="stylesheet"/>
+		<link href="/css/popup.css?1" rel="stylesheet"/>
+	</head>
+	<body>
+		<div id="landing">
+		
+		</div>
+		<nav>
+			<span id="back" class="material-icons" onclick="back()">arrow_back</span>
+			<div id="menu">
+				<div class="item" onclick="showTeachers()">
+					<span class="title">Преподаватели</span>
+					<div class="bookmarks">
+						<ul class="no-marker" id="teacher-bookmarks"></ul>
+					</div>
+				</div>
+				<div class="item" onclick="showStudents()">
+					<span class="title">Студенты</span>
+					<div class="bookmarks">
+						<ul class="no-marker" id="student-bookmarks"></ul>
+					</div>
+				</div>
+				<div class="item" onclick="showGroups()">
+					<span class="title">Группы</span>
+					<div class="bookmarks">
+						<ul class="no-marker" id="group-bookmarks"></ul>
+					</div>
+				</div>
+			</div>
+			<div id="auth">
+				<span id="name">Аккаунт Аккаунтович Аккаунтов</span><br>
+				<span onclick="logout()"><u>Выйти из аккаунта</u></span>
+			</div>
+		</nav>
+		<main>
+			<div id="students" class="page">
+				<div class="actions">
+					Выбрать, начиная с <input type="number" min="0" id="student-offset"/>
+					не более <input type="number" min="0" max="1000" id="student-limit"/> записей
+					<span class="material-icons" onclick="Student.applyFilter()">done</span>
+					<span class="material-icons" onclick="Student.add()">add</span>
+				</div>
+				<hr/>
+				<table id="student-list" class="list"></table>
+				<div class="container">
+					<div id="student-form" class="form">
+						 <label for="first-name">Имя: </label><input id="student-first-name" type="text"/><br/>
+						 <label for="last-name">Фамилия: </label><input id="student-last-name" type="text"/><br/>
+						 <label for="patronymic">Отчество: </label><input id="student-patronymic" type="text"/><br/>
+						 <label for="phone">Номер телефона: </label><input id="student-phone" type="text"/><br/>
+						 <label for="email">Адрес эл. почты: </label><input id="student-email" type="text"/><br/>
+						 <button onclick="Student.saveForm()">Сохранить</button>
+						 <span class="form-cancel" onclick="Student.cancel()">Отмена</span>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+		
+		</footer>
+		<script src="/js/api.js"></script>
+		<script src="/js/tools.js"></script>
+		<script src="/js/dom.js"></script>
+		<script src="/js/index.js"></script>
+		<script src="/js/auth.js"></script>
+		<script src="/js/students.js"></script>
+	</body>
+</html>
