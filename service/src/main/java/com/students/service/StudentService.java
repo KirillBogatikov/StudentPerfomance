@@ -1,6 +1,7 @@
 package com.students.service;
 
 import static com.students.service.validation.ValidationResult.Required;
+import static com.students.service.validation.ValidationResult.Valid;
 import static com.students.service.validation.Validator.isBoundsCorrect;
 import static com.students.service.validation.Validator.isQuerySafe;
 import static com.students.service.validation.Validator.validate;
@@ -11,31 +12,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.students.db.model.Teacher;
-import com.students.db.sql.TeacherRepository;
+import com.students.db.model.Student;
+import com.students.db.sql.StudentRepository;
 import com.students.service.result.ListResult;
 import com.students.service.result.Result;
 import com.students.service.result.SaveResult;
 import com.students.service.validation.ValidationResult;
-import com.students.util.Hash;
 
-public class TeacherService {
-	private TeacherRepository repo;
-	private String salt;
-	private int saltPosition;
+public class StudentService {
+	private StudentRepository repo;
 
-	public TeacherService(TeacherRepository repo, String salt, int saltPosition) {
+	public StudentService(StudentRepository repo) {
 		super();
 		this.repo = repo;
-		this.salt = salt;
-		this.saltPosition = saltPosition;
 	}
 
-	public ListResult<Teacher> list(String query, int offset, int limit) {
+	public ListResult<Student> list(String query, int offset, int limit) {
 		if (!isBoundsCorrect(offset, limit)) {
 			return new ListResult<>(true);
 		}
-		if (!isQuerySafe(query)) {
+		if (query != null && !isQuerySafe(query)) {
 			return new ListResult<>(true);
 		}
 		
@@ -47,66 +43,63 @@ public class TeacherService {
 		}
 	}
 	
-	private Map<String, ValidationResult> validateInstance(Teacher t) {
+	private Map<String, ValidationResult> validateInstance(Student s) {
 		var map = new HashMap<String, ValidationResult>();
-		var auth = t.getAuth();
-		var data = t.getData();
-		
-		if (auth == null) {
-			map.put("auth", Required);
-			return map;
-		}
+		var data = s.getData();
+		var contact = s.getContact();
 		
 		if (data == null) {
 			map.put("data", Required);
 		}
+		if (contact == null) {
+			map.put("auth", Required);
+			return map;
+		}
 		
-		map.put("login", validate(auth.getLogin(), 4, 16, "\\w+"));
-		map.put("password", validate(auth.getPassword(), 8, 128, ".+"));
 		map.put("first_name", validate(data.getFirstName(), 1, 128, "[a-zA-Zа-яА-Я ]+"));
 		map.put("last_name", validate(data.getLastName(), 1, 128, "[a-zA-Zа-яА-Я ]+"));
 		if (data.getPatronymic() != null) {
 			map.put("patronymic", validate(data.getPatronymic(), 1, 128, "[a-zA-Zа-яА-Я ]+"));
 		}
+		if (contact.getPhone() != null) {
+			map.put("phone", validate(contact.getPhone(), 2, 128, "[+*]?(\\d|[-()_ ])+"));
+		}
+		if (contact.getEmail() != null) {
+			map.put("email", validate(contact.getEmail(), 3, 128, ".+@.+\\..+"));
+		}
 		
 		return map;
 	}
 	
-	private void mergeObjects(Teacher t, Teacher old) {
-		var newAuth = t.getAuth();
-		var oldAuth = old.getAuth();
+	private void mergeObjects(Student s, Student old) {
+		var newContact = s.getContact();
+		var oldContact = old.getContact();
 		
-		merge(newAuth::setLogin, newAuth::getLogin, oldAuth::getLogin);
-		merge(newAuth::setPasswordHash, newAuth::getPasswordHash, oldAuth::getPasswordHash);
+		merge(newContact::setPhone, newContact::getPhone, oldContact::getPhone);
+		merge(newContact::setEmail, newContact::getEmail, oldContact::getEmail);
 		
-		var newData = t.getData();
+		var newData = s.getData();
 		var oldData = old.getData();
 		
 		merge(newData::setFirstName, newData::getFirstName, oldData::getFirstName);
 		merge(newData::setLastName, newData::getLastName, oldData::getLastName);
 		merge(newData::setPatronymic, newData::getPatronymic, oldData::getPatronymic);
 	}
-	
-	public SaveResult save(Teacher t) {
-		var map = validateInstance(t);
+
+	public SaveResult save(Student s) {
+		var map = validateInstance(s);
 		
-		if(map.isEmpty()) {
+		if(map.entrySet().stream().allMatch(t -> t.getValue() == Valid)) {
 			try {
-				var auth = t.getAuth();
-				if (auth.getPassword() != null) {
-					auth.setPasswordHash(Hash.hash(auth.getPassword(), salt, saltPosition));
-				}
-				
-				if (t.getId() == null) {
-					repo.insert(t);
-					return new SaveResult(t.getId());
+				if (s.getId() == null) {
+					s.setId(UUID.randomUUID());
+					repo.insert(s);
+					return new SaveResult(s.getId());
 				} else {
-					var old = repo.get(t.getId());
-					mergeObjects(t, old);					
-					var u = repo.update(t);
-					return new SaveResult(t.getId(), u);
+					var old = repo.get(s.getId());
+					mergeObjects(s, old);
+					return new SaveResult(s.getId(), !repo.update(s));
 				}
-				
 			} catch(SQLException e) {
 				e.printStackTrace();
 				return new SaveResult(e.getMessage());
@@ -115,15 +108,17 @@ public class TeacherService {
 		
 		return new SaveResult(map);
 	}
-	
-	public Result<Void> delete(UUID id) {
+
+	public Result<Void> delete(String id) {
 		var result = new Result<Void>();
 		try {
-			result.setNotFound(repo.delete(id));
-		} catch (SQLException e) {
+			result.setNotFound(repo.delete(UUID.fromString(id)));			
+		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setError(e.getMessage());
-		}
+		}		
 		return result;
 	}
+	
+	
 }

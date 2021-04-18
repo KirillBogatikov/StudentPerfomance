@@ -51,7 +51,13 @@ public class AuthService {
 	
 	public LoginResult login(String tokenString) {
 		var result = new LoginResult();
-		var token = Token.decode(secretKey, tokenString);
+		Token token;
+		try {
+			token = Token.decode(secretKey, tokenString);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return result;
+		}
 		
 		try {
 			var found = repository.has(token.getUserId());

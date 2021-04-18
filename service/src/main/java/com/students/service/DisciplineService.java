@@ -10,6 +10,7 @@ import java.util.UUID;
 import com.students.db.model.Discipline;
 import com.students.db.sql.DisciplineRepository;
 import com.students.service.result.ListResult;
+import com.students.service.result.Result;
 import com.students.service.result.SaveResult;
 
 public class DisciplineService {
@@ -60,13 +61,14 @@ public class DisciplineService {
 		}
 	}
 
-	public String delete(String id) {
+	public Result<Void> delete(String id) {
+		var r = new Result<Void>();
 		try {
-			repo.delete(UUID.fromString(id));
-			return null;
+			r.setNotFound(repo.delete(UUID.fromString(id)));
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			r.setError(e.getMessage());
 		}
+		return r;
 	}
 }

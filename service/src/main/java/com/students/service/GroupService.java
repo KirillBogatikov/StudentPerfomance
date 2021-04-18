@@ -1,5 +1,8 @@
 package com.students.service;
 
+import static com.students.service.validation.Validator.isBoundsCorrect;
+import static com.students.service.validation.Validator.isQuerySafe;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +12,7 @@ import com.students.db.model.Group;
 import com.students.db.model.Student;
 import com.students.db.sql.GroupRepository;
 import com.students.service.result.ListResult;
+import com.students.service.result.Result;
 import com.students.service.result.SaveResult;
 import com.students.service.validation.ValidationResult;
 
@@ -20,6 +24,13 @@ public class GroupService {
 	}
 
 	public ListResult<Group> list(String query, int offset, int limit) {
+		if (!isBoundsCorrect(offset, limit)) {
+			return new ListResult<>(true);
+		}
+		if (query != null && !isQuerySafe(query)) {
+			return new ListResult<>(true);
+		}
+		
 		try {
 			List<Group> data;
 			if (query == null) {
@@ -71,14 +82,29 @@ public class GroupService {
 		}
 	}
 
-	public String delete(String id) {
+	public Result<Void> delete(String id) {
+		var result = new Result<Void>();
 		try {
-			repo.delete(UUID.fromString(id));
-			return null;
+			result.setNotFound(repo.delete(UUID.fromString(id)));
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return e.getMessage();
+			result.setError(e.getMessage());
 		}
+		return result;
+	}
+
+	public Result<Void> moveStudent(String newGroup, String student) {
+		var result = new Result<Void>();
+		
+		try {
+			var m = repo.moveStudent(UUID.randomUUID(), UUID.fromString(student), UUID.fromString(newGroup));
+			result.setNotFound(m);
+		} catch(SQLException e) {
+			e.printStackTrace();
+			result.setError(e.getMessage());
+		}
+		
+		return result;
 	}
 
 }
