@@ -8,7 +8,9 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.students.db.model.Group;
 import com.students.db.model.Import;
+import com.students.db.model.Student;
 import com.students.db.model.Teacher;
 import com.students.db.repo.Database;
 import com.students.util.Dates;
@@ -59,14 +61,18 @@ public class SqlImporter extends SqlRepository {
 	}
 	
 	private void saveImport(String table) throws SQLException {
+		System.out.println(table);
 		Import lastImport = database.query(Import.class, last, table);
+		System.out.println(lastImport);
 		
 		int version = 0;
 		if (lastImport != null) {
 			version = lastImport.getVersion();
 		}
+		System.out.println(version);
 		
 		database.execute(insert, UUID.randomUUID(), table, version + 1, Dates.sqlDate(Dates.now()));
+		System.out.println(version);
 	}
 	
 	public void importTeachers() throws SQLException, IOException {
@@ -84,5 +90,49 @@ public class SqlImporter extends SqlRepository {
 		}
 		
 		saveImport("teacher");
+	}
+	
+	public void importStudents() throws SQLException, IOException {
+		List<Student> data = makeImport(new TypeReference<List<Student>>() {}, "student");
+		if (data == null) {
+			return;
+		}
+		
+		var repo = new StudentRepository(database);
+		for (var s : data) {
+			repo.insert(s);
+		}
+		
+		saveImport("student");
+	}
+
+	public static class LinkedGroup extends Group {
+		private List<UUID> students;
+
+		public List<UUID> getStudents() {
+			return students;
+		}
+
+		public void setStudents(List<UUID> students) {
+			this.students = students;
+		}
+	}
+	
+	public void importGroups() throws SQLException, IOException {
+		List<LinkedGroup> data = makeImport(new TypeReference<List<LinkedGroup>>() {}, "groups");
+		if (data == null) {
+			return;
+		}
+		
+		var repo = new GroupRepository(database);
+		for (var d : data) {
+			repo.insert(d);
+			
+			for (var id : d.getStudents()) {
+				repo.moveStudent(UUID.randomUUID(), id, d.getId());
+			}
+		}
+		
+		saveImport("groups");
 	}
 }

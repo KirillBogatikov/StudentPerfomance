@@ -39,6 +39,10 @@ public class DisciplineRepository extends SqlRepository {
 			return p;
 		});
 	}
+	
+	public boolean has(UUID id) throws SQLException {
+		return database.query(r -> 1, has, id) != null;
+	}
 
 	public List<Discipline> list(int offset, int limit) throws SQLException {
 		return database.queryList(Discipline.class, list, offset, limit);
@@ -61,7 +65,12 @@ public class DisciplineRepository extends SqlRepository {
 		return true;
 	}
 
-	public void delete(UUID id) throws SQLException {
+	public boolean delete(UUID id) throws SQLException {
+		if (!has(id)) {
+			return false;
+		}
+		
 		database.execute(delete, id);
+		return true;
 	}
 }

@@ -17,7 +17,8 @@ public class GroupRepository extends SqlRepository {
 	private static final String has = readText(DIR, "has.sql"), list = readText(DIR, "list.sql"),
 			search = readText(DIR, "search.sql"), listStudents = readText(DIR, "list_students.sql"),
 			insert = readText(DIR, "insert.sql"), update = readText(DIR, "update.sql"),
-			delete = readText(DIR, "delete.sql"), perfomance = readText(DIR, "perfomance.sql");
+			delete = readText(DIR, "delete.sql"), perfomance = readText(DIR, "perfomance.sql"),
+			move = readText(DIR, "move.sql"), checkMove = readText(DIR, "check_move.sql");
 
 	public GroupRepository(Database database) {
 		super(database);
@@ -55,6 +56,15 @@ public class GroupRepository extends SqlRepository {
 	public List<Student> listStudents(UUID group) throws SQLException {
 		return database.queryList(Student.class, listStudents, group);
 	}
+	
+	public boolean moveStudent(UUID newId, UUID student, UUID newGroup) throws SQLException {
+		if (database.query(r -> 1, checkMove, newGroup, student) == null) {
+			return false;
+		}
+
+		database.execute(move, student, newId, newGroup, student);
+		return true;
+	}
 
 	public void insert(Group g) throws SQLException {
 		database.execute(insert, g.getId(), g.getCode(), g.getDuration());
@@ -69,8 +79,13 @@ public class GroupRepository extends SqlRepository {
 		return true;
 	}
 
-	public void delete(UUID id) throws SQLException {
+	public boolean delete(UUID id) throws SQLException {
+		if (!has(id)) {
+			return false;
+		}
+		
 		database.execute(delete, id);
+		return true;
 	}
 	
 	public boolean has(UUID id) throws SQLException {

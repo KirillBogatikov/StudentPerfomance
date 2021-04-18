@@ -1,0 +1,1 @@
+SELECT "contact" FROM "student" WHERE "id" = ?

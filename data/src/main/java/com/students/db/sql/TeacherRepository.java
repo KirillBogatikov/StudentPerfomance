@@ -60,9 +60,14 @@ public class TeacherRepository extends SqlRepository {
 				data.getFirstName(), data.getLastName(), data.getPatronymic(), t.getId(), auth.getId(), data.getId());
 	}
 
-	public void delete(UUID id) throws SQLException {
+	public boolean delete(UUID id) throws SQLException {
 		var t = get(id);
+		if (t == null) {
+			return false;
+		}
+		
 		database.execute(delete, t.getId(), t.getAuth().getId(), t.getData().getId());
+		return true;
 	}
 
 	public boolean has(UUID id) throws SQLException {

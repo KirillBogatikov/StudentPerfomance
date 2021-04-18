@@ -1,0 +1,11 @@
+[{
+	"id": "b1a6c36f-3184-480e-a54f-eafc290b01f8",
+	"code": "20ит77",
+	"duration": 10,
+	"students": ["14a2d3f6-ca9a-4da1-8660-59ed8ea7c6fc"]
+}, {
+	"id": "d59039fa-2092-4946-a393-4d79424ba226",
+	"code": "19ит64",
+	"duration": 10,
+	"students": ["afd09e97-a9d9-4fa6-bd2e-e0fcbd6671fa", "4a2af2a9-e725-43f5-8b44-db0867d6c355"]
+}]
