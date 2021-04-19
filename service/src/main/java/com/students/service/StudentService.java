@@ -46,14 +46,14 @@ public class StudentService {
 	
 	public Result<Group> getStudentGroup(String id) {
 		var result = new Result<Group>();
-		try {
+		/*try {
 			var data = repo.getGroup(UUID.fromString(id));
 			result.setData(data);
 			result.setNotFound(data == null);
 		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setError(e.getMessage());
-		}
+		}*/
 		return result;		
 	}
 	

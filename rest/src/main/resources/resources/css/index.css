@@ -19,7 +19,7 @@
 	--table-header-color: #BF0000;
 	--table-header-text-color: white;
 	--table-marked-color: #D8D8D8;
-	--table-selected-color: #FF7F7F;
+	--table-default-color: #F2F2F2;
 }
 
 HTML, BODY {
@@ -157,17 +157,26 @@ BUTTON {
 	margin-top: 25px;
 }
 
-.page .list TH {
-	background: var(--table-header-color);
-	color: var(--table-header-text-color);
-	padding: 5px;
+.page .list TR {
 }
 
-.page .list TD {
+.page .list TH, TD {
 	padding-bottom: 10px;
 	padding-left: 10px;
 	padding-right: 10px;
+	padding: 5px;
+    margin: 12px 12px 12px 12px;
+	box-shadow: 3px 3px 6px var(--shadow-color);	
+}
+
+.page .list TH {
+	background: var(--table-header-color);
+	color: var(--table-header-text-color);
+}
+
+.page .list TD {
 	text-align: center;
+	background: var(--table-default-color);
 }
 
 .page .list TD.marked {
