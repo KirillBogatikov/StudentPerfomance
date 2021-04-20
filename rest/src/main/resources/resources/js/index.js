@@ -2,8 +2,21 @@ events = {
 	onload: []
 };
 
+fixFormLabel = function(id) {
+	let width = Math.max(...query(id + " .form LABEL", true).map(t => t.offsetWidth))
+	query(id + " .form LABEL", true).forEach(t => t.style["width"] = width)
+};
+
 index_all = function() {
 	__landing = query("#landing")
+	__auth = {
+		page: query("#landing #auth"),
+		fields: {
+			login: query("#landing #auth-login"),
+			password: query("#landing #auth-password")
+		}
+	}
+	__account = query("#account-name")
 	__students = {
 		page: query("#students"),
 		actions: {
@@ -48,32 +61,24 @@ onload = function() {
 			t.style["font-size"] = height + "px"		
 		})
 	})();
-	let fixFormLabel = function(id) {
-		let width = Math.max(...query(id + " .form LABEL", true).map(t => t.offsetWidth))
-		query(id + " .form LABEL", true).forEach(t => t.style["width"] = width)
-	};
-	fixFormLabel("#student")
 	
-	for (var i in events.onload) {
-		events.onload[i]();
-	}
+	fixFormLabel("#student");
+	fixFormLabel("#auth");
 	
 	(function() {
 		query(".container").remove()
 		query(".page").remove()
 	})();
 	
-	if (localStorage.getItem("token")) {
-		__landing.remove()
-		document.body.append(__nav)
-		document.body.append(__main)
-		
+	for (var i in events.onload) {
+		events.onload[i]();
+	}
+	
+	if (logged_in()) {
 		let params = new URLSearchParams(window.location.search)
 		if (params.get("students") == "") {
 			showStudents()
 		}
-	} else {
-		logout()
 	}
 }
 

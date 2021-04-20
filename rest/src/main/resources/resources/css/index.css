@@ -12,7 +12,7 @@
 	--dialog-text-color: black;
 	--base-font: FlowExt;
 	--title-font: CaptureIt;
-	--button-color: #BF0000;
+	--button-color: #660099;
 	--button-text-color: white;
 	--base-text-color: #720000;
 	
@@ -28,6 +28,7 @@ HTML, BODY {
 	margin: 0px;
 	width: 100%;
 	min-height: 100%;
+    font-family: var(--base-font);
 }
 
 NAV {
@@ -98,7 +99,6 @@ MAIN {
 	align-items: center;
     justify-content: center;
     flex-direction: column;
-    font-family: var(--base-font);
 }
 
 MAIN .container {
@@ -137,6 +137,8 @@ BUTTON {
 	border-radius: 15px;
 	padding: 10px;
 	box-shadow: 3px 3px 5px var(--shadow-color);
+	font-family: var(--title-font);
+	font-size: 18pt;
 }
 
 .form-cancel {

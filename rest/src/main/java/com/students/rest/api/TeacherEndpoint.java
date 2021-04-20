@@ -1,7 +1,5 @@
 package com.students.rest.api;
 
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +24,8 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 	private TeacherService service;
 
 	@GetMapping(path = {"list", "search"})
-	public ResponseEntity<List<Teacher>> list(@RequestHeader("Authorization") String token, String query, int offset, int limit) {
-		ResponseEntity<List<Teacher>> status = auth(token);
+	public ResponseEntity<?> list(@RequestHeader("Authorization") String token, String query, int offset, int limit) {
+		var status = auth(token);
 		if (status != null) {
 			return status;
 		}
@@ -48,9 +46,28 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@GetMapping()
+	public ResponseEntity<?> get(@RequestHeader("Authorization") String token) {
+		var status = auth(token);
+		if (status != null) {
+			return status;
+		}
+		
+		var result = service.getByAuth(this.token.getAuthId());
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 	@PutMapping()
 	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Teacher teacher) {
-		ResponseEntity<Map<String, Object>> status = auth(token);
+		var status = auth(token);
 		if (status != null) {
 			return status;
 		}
@@ -72,8 +89,8 @@ public class TeacherEndpoint extends AuthorizedEndpoint {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<Void> delete(@RequestHeader("Authorization") String token, @PathVariable String id) {
-		ResponseEntity<Void> status = auth(token);
+	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, @PathVariable String id) {
+		var status = auth(token);
 		if (status != null) {
 			return status;
 		}

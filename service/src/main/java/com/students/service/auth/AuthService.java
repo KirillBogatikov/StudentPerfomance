@@ -2,6 +2,7 @@ package com.students.service.auth;
 
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.UUID;
 
 import javax.crypto.SecretKey;
 
@@ -40,7 +41,7 @@ public class AuthService {
 		result.setUserFound(true);
 		
 		if (Arrays.equals(auth.getPasswordHash(), Hash.hash(password, salt, saltPosition))) {
-			var token = new Token(secretKey, auth.getId());
+			var token = new Token(secretKey, UUID.randomUUID(), auth.getId());
 			result.setData(token);
 		} else {
 			result.setPasswordIncorrect(true);
@@ -61,7 +62,7 @@ public class AuthService {
 		}
 		
 		try {
-			var found = repository.has(token.getUserId());
+			var found = repository.has(token.getAuthId());
 			result.setUserFound(found);
 				
 			if (!found) {

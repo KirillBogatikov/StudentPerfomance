@@ -1,11 +1,11 @@
 AuthAPI = {
-	login: function(l, p) {
+	login: function(l, p, c) {
 		request("POST", "/api/auth/login", {
 			"login": l,
 			"password": p
 		}, (xhr) => {
 			switch(xhr.status) {
-				case 403:
+				case 400: case 403:
 					popup("Пароль введен неверно")
 					break
 				case 404:
@@ -14,7 +14,7 @@ AuthAPI = {
 				case 200:
 					popup("Вход выполнен успешно")
 					let data = JSON.parse(xhr.responseText)
-					localStorage.setItem("token", data.token)
+					c(data.token)
 					break
 				default:
 					popup("На сервере произошла непредвиденная ошибка")

@@ -126,4 +126,17 @@ public class TeacherService {
 		}
 		return result;
 	}
+
+	public Result<Teacher> getByAuth(UUID authId) {
+		var result = new Result<Teacher>();
+		try {
+			var teacher = repo.getByAuthId(authId);
+			result.setData(teacher);
+			result.setNotFound(teacher == null);
+		} catch(SQLException e) {
+			e.printStackTrace();
+			result.setError(e.getMessage());
+		}
+		return result;
+	}
 }

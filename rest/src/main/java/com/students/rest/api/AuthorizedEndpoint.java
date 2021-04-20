@@ -5,10 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.students.service.auth.AuthService;
+import com.students.service.auth.Token;
 
 public abstract class AuthorizedEndpoint {
 	@Autowired
 	private AuthService authService;
+	protected Token token;
 	
 	public <T> ResponseEntity<T> auth(String header) {
 		if (header == null || !header.startsWith("Bearer ")) {
@@ -35,6 +37,7 @@ public abstract class AuthorizedEndpoint {
 		}
 		
 		if (result.getData().isValid()) {
+			this.token = result.getData();
 			return null;
 		}
 		

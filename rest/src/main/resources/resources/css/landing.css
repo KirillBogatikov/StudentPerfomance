@@ -1,5 +1,37 @@
+* {
+	--landing-auth-background: #F5E5FF
+}
+
 #landing {
+	position: absolute;
 	width: 100%;
 	min-height: 100%;
 	z-index: 100;
+	opacity: 0;
+}
+
+#landing #ad {
+	position: relative;
+	width: 70%;
+	min-height: 100%;
+}
+
+#landing #auth {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	width: 30%;
+	min-height: 100%;
+	background: var(--landing-auth-background);
+	box-shadow: -4px 0px 7px var(--shadow-color);
+	text-align: center;
+	display: flex;    
+	align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#landing #auth P {
+	font-family: var(--title-font);
+	font-size: 40pt;
 }
