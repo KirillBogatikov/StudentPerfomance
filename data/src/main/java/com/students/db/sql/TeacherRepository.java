@@ -13,8 +13,8 @@ import com.students.db.repo.Database;
 
 public class TeacherRepository extends SqlRepository {
 	private static final String DIR = "sql/teacher";
-	private static final String get = readText(DIR, "get_by_id.sql"), has = readText(DIR, "has.sql"),
-			insert = readText(DIR, "insert.sql"), update = readText(DIR, "update.sql"),
+	private static final String get = readText(DIR, "get_by_id.sql"), getByAuth = readText(DIR, "get_by_auth.sql"),
+			has = readText(DIR, "has.sql"), insert = readText(DIR, "insert.sql"), update = readText(DIR, "update.sql"),
 			delete = readText(DIR, "delete.sql"), list = readText(DIR, "list.sql"),
 			search = readText(DIR, "search.sql");
 
@@ -41,6 +41,10 @@ public class TeacherRepository extends SqlRepository {
 		return database.query(Teacher.class, get, id);
 	}
 
+	public Teacher getByAuthId(UUID id) throws SQLException {
+		return database.query(Teacher.class, getByAuth, id);
+	}
+
 	public boolean update(Teacher t) throws SQLException {
 		if (database.query(r -> 1, get, t.getId()) == null) {
 			return false;
@@ -65,7 +69,7 @@ public class TeacherRepository extends SqlRepository {
 		if (t == null) {
 			return false;
 		}
-		
+
 		database.execute(delete, t.getId(), t.getAuth().getId(), t.getData().getId());
 		return true;
 	}

@@ -10,4 +10,4 @@ SELECT
 FROM "teacher" AS "t" 
 JOIN "auth_data" AS "a" ON "t"."auth" = "a"."id" 
 JOIN "personal_data" AS "d" ON "t"."data" = "d"."id" 
-WHERE "t"."id" = ?
+WHERE "a"."id" = ?
