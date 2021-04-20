@@ -19,7 +19,7 @@ public class GroupRepository extends SqlRepository {
 			listStudents = readText(DIR, "list_students.sql"), insert = readText(DIR, "insert.sql"),
 			update = readText(DIR, "update.sql"), delete = readText(DIR, "delete.sql"),
 			perfomance = readText(DIR, "perfomance.sql"), move = readText(DIR, "move.sql"),
-			checkMove = readText(DIR, "check_move.sql");
+			checkMove = readText(DIR, "check_move.sql"), remove = readText(DIR, "remove.sql");
 
 	public GroupRepository(Database database) {
 		super(database);
@@ -58,12 +58,12 @@ public class GroupRepository extends SqlRepository {
 	}
 
 	public boolean moveStudent(UUID newId, UUID student, UUID newGroup) throws SQLException {
-		System.out.println("check " + student + " and group " + newGroup);
 		if (database.query(r -> 1, checkMove, newGroup, student) == null) {
 			return false;
 		}
 
-		database.execute(move, student, newId, newGroup, student);
+		database.execute(remove, student);
+		database.execute(move, newId, newGroup, student);
 		return true;
 	}
 
@@ -95,5 +95,14 @@ public class GroupRepository extends SqlRepository {
 
 	public List<Mark> perfomance(UUID id, int semester, List<UUID> disciplines) throws SQLException {
 		return database.queryList(Mark.class, perfomance, id, semester, disciplines);
+	}
+
+	public boolean removeStudent(UUID oldGroup, UUID student) throws SQLException {
+		if (database.query(r -> 1, checkMove, oldGroup, student) == null) {
+			return false;
+		}
+
+		database.execute(remove, student);
+		return true;
 	}
 }

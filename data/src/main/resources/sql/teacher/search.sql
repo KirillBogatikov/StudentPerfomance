@@ -10,5 +10,5 @@ SELECT
 FROM "teacher" AS "t" 
 JOIN "auth_data" AS "a" ON "t"."auth" = "a"."id" 
 JOIN "personal_data" AS "d" ON "t"."data" = "d"."id" 
-WHERE "d"."first_name" ~ ? OR "d"."last_name" ~ :1 OR "d"."patronymic" ~ :1 OR "a"."login" ~ :1 
+WHERE "d"."first_name" ~ ? OR "d"."last_name" ~ ? OR "d"."patronymic" ~ ? OR "a"."login" ~ ? 
 OFFSET ? LIMIT ?

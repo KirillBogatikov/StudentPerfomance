@@ -34,7 +34,7 @@ public class TeacherRepository extends SqlRepository {
 	}
 
 	public List<Teacher> search(String query, int offset, int limit) throws SQLException {
-		return database.queryList(Teacher.class, search, query, offset, limit);
+		return database.queryList(Teacher.class, search, query, query, query, query, offset, limit);
 	}
 
 	public Teacher get(UUID id) throws SQLException {

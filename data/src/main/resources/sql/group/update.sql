@@ -1,4 +1,4 @@
 UPDATE "group" SET 
-	"code" = ? 
+	"code" = ?, 
 	"duration" = ? 
 WHERE "id" = ?

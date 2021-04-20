@@ -11,16 +11,16 @@ import com.students.db.sql.Mapping;
 public abstract class Database {
 	public abstract Connection connect() throws SQLException;
 	
-	public PreparedStatement prepareStatement(String sql, Object...args) throws SQLException {
-		var stat = connect().prepareStatement(sql);
+	public void fillStatement(PreparedStatement stat, Object...args) throws SQLException {
 		for (int i = 0; i < args.length; i++) {
 			stat.setObject(i + 1, args[i]);
 		}
-		return stat;
 	}
 	
 	public <T> T query(Mapper<T> mapper, String sql, Object... args) throws SQLException {
-		try(var stat = prepareStatement(sql, args)) {			
+		try(var conn = connect();
+			var stat = conn.prepareStatement(sql)) {
+			fillStatement(stat, args);
 			ResultSet result = stat.executeQuery();
 			
 			if(result.next()) {
@@ -40,7 +40,9 @@ public abstract class Database {
 	}
 	
 	public boolean execute(String sql, Object... args) throws SQLException {
-		try (var stat = prepareStatement(sql, args)) {
+		try(var conn = connect();
+			var stat = conn.prepareStatement(sql)) {
+			fillStatement(stat, args);
 			return stat.execute();
 		}
 	}
