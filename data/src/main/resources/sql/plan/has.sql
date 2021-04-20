@@ -1,0 +1,1 @@
+SELECT "semester" FROM "plan" WHERE "id" = ?

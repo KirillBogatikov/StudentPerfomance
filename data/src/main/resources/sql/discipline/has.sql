@@ -1,1 +1,0 @@
-SELECT "name" FROM "discipline" WHERE "id" = ?

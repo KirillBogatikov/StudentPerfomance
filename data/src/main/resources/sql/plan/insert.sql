@@ -1,0 +1,1 @@
+INSERT INTO "plan" ("id", "group", "semester") VALUES (?, ?, ?);

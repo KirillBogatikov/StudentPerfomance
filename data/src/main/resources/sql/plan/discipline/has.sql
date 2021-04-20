@@ -1,0 +1,1 @@
+SELECT "name" FROM "plan_disciplin" WHERE "id" = ?;
