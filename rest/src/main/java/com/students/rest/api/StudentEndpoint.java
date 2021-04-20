@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -47,7 +48,7 @@ public class StudentEndpoint extends AuthorizedEndpoint {
 	}
 	
 	@GetMapping("{id}/group")
-	public ResponseEntity<?> getGroup(@RequestHeader("Authorization") String token, String id) {
+	public ResponseEntity<?> getGroup(@RequestHeader("Authorization") String token, @PathVariable String id) {
 		ResponseEntity<List<Teacher>> status = auth(token);
 		if (status != null) {
 			return status;
@@ -89,7 +90,7 @@ public class StudentEndpoint extends AuthorizedEndpoint {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, String id) {
+	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, @PathVariable String id) {
 		ResponseEntity<List<Teacher>> status = auth(token);
 		if (status != null) {
 			return status;

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.students.db.model.Contact;
+import com.students.db.model.Group;
 import com.students.db.model.PersonalData;
 import com.students.db.model.Student;
 import com.students.db.repo.Database;
@@ -13,6 +14,7 @@ import static com.students.util.Extractor.readText;
 public class StudentRepository extends SqlRepository {
 	private static final String DIR = "sql/student";
 	private static final String get = readText(DIR, "get.sql"),
+			getGroup = readText(DIR, "get_group.sql"), 
 			has = readText(DIR, "has.sql"), 
 			list = readText(DIR, "list.sql"),
 			search = readText(DIR, "search.sql"), 
@@ -51,7 +53,7 @@ public class StudentRepository extends SqlRepository {
 	}
 
 	public List<Student> search(String query, int offset, int limit) throws SQLException {
-		return database.queryList(Student.class, search, query, offset, limit);
+		return database.queryList(Student.class, search, query, query, query, query, query, offset, limit);
 	}
 
 	public void insert(Student s) throws SQLException {
@@ -85,5 +87,9 @@ public class StudentRepository extends SqlRepository {
 
 	public Student get(UUID id) throws SQLException {
 		return database.query(Student.class, get, id);
+	}
+	
+	public Group getGroup(UUID student) throws SQLException {
+		return database.query(Group.class, getGroup, student);
 	}
 }

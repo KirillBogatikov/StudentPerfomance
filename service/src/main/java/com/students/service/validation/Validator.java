@@ -26,6 +26,6 @@ public class Validator {
 	}
 	
 	public static boolean isQuerySafe(String query) {
-		return query.toLowerCase().matches(".*(select|drop|create|table|insert|delete|update|truncate).*");
+		return !query.toLowerCase().matches(".*(select|drop|create|table|insert|delete|update|truncate).*");
 	}
 }

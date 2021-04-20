@@ -11,6 +11,7 @@ DIV.popup {
 	background: var(--nav-card-color);
 	box-shadow: 4px 4px 10px var(--shadow-color);
 	text-align: center;
+	z-index: 999;
 }
 
 DIV.popup SPAN.pp-content {

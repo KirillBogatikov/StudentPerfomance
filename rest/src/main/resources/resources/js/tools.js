@@ -15,6 +15,13 @@ function cookie(name) {
 	}
 }
 
+function local(name) {
+	let data = localStorage.getItem(name)
+	if (data != null) {
+		data = JSON.parse(data)
+	}
+}
+
 function validation_message(name, result, min, max, chars) {
 	if (!result || result == "Valid") {
 		return ""

@@ -56,6 +56,7 @@ public class AuthService {
 			token = Token.decode(secretKey, tokenString);
 		} catch(Exception e) {
 			e.printStackTrace();
+			result.setInvalidToken(true);
 			return result;
 		}
 		

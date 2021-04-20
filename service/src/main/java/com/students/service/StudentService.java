@@ -9,6 +9,7 @@ import static com.students.util.Merger.merge;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -37,7 +38,15 @@ public class StudentService {
 		}
 		
 		try {
-			return new ListResult<>(repo.list(offset, limit));
+			List<Student> data;
+			
+			if (query == null) {
+				data = repo.list(offset, limit);
+			} else {
+				data = repo.search(query, offset, limit);
+			}
+			
+			return new ListResult<>(data);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return new ListResult<>(e.getMessage());
@@ -46,14 +55,14 @@ public class StudentService {
 	
 	public Result<Group> getStudentGroup(String id) {
 		var result = new Result<Group>();
-		/*try {
+		try {
 			var data = repo.getGroup(UUID.fromString(id));
 			result.setData(data);
 			result.setNotFound(data == null);
 		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setError(e.getMessage());
-		}*/
+		}
 		return result;		
 	}
 	

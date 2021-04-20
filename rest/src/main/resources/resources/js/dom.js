@@ -1,11 +1,24 @@
-function query(s, a) {
+function elem(tag, className, html) {
+	let e = document.createElement(tag)
+	if (className) {
+		e.className = className
+	}
+	if (html) {
+		e.innerHTML = html
+	}
+	return e
+}
+
+function query(s, a, parent) {
+	parent = parent || document
+	
 	if (a) {
 		let array = []
-		document.querySelectorAll(s).forEach(e => array.push(e))
+		parent.querySelectorAll(s).forEach(e => array.push(e))
 		return array
 	}
 	
-	return document.querySelector(s)
+	return parent.querySelector(s)
 }
 
 const FPS = 60, time = 400;
@@ -81,6 +94,7 @@ function tableCell(row, text, i) {
 	if (i % 2 == 1) {
 		cell.className = "marked"
 	}
-	
+		
 	row.append(cell)
+	return cell
 }

@@ -1,7 +1,11 @@
 function logout() {
-	
+	localStorage.removeItem("token")
+	document.body.append(__landing)
+	__nav.remove()
+	__main.remove()
+	popup("Вы вышли из аккаунта")
 }
 
 function login() {
-	Auth.login("carrot", "33980e243add")
+	AuthAPI.login("carrot", "33980e243add")
 }

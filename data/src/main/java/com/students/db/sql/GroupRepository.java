@@ -15,10 +15,11 @@ import com.students.db.repo.Database;
 public class GroupRepository extends SqlRepository {
 	private static final String DIR = "sql/group";
 	private static final String has = readText(DIR, "has.sql"), list = readText(DIR, "list.sql"),
-			search = readText(DIR, "search.sql"), listStudents = readText(DIR, "list_students.sql"),
-			insert = readText(DIR, "insert.sql"), update = readText(DIR, "update.sql"),
-			delete = readText(DIR, "delete.sql"), perfomance = readText(DIR, "perfomance.sql"),
-			move = readText(DIR, "move.sql"), checkMove = readText(DIR, "check_move.sql");
+			search = readText(DIR, "search.sql"),
+			listStudents = readText(DIR, "list_students.sql"), insert = readText(DIR, "insert.sql"),
+			update = readText(DIR, "update.sql"), delete = readText(DIR, "delete.sql"),
+			perfomance = readText(DIR, "perfomance.sql"), move = readText(DIR, "move.sql"),
+			checkMove = readText(DIR, "check_move.sql");
 
 	public GroupRepository(Database database) {
 		super(database);
@@ -28,19 +29,18 @@ public class GroupRepository extends SqlRepository {
 			g.setId(r.getObject("group_id", UUID.class));
 			g.setDuration(r.getInt("group_duration"));
 			g.setCode(r.getString("group_code"));
-			g.setCount(r.getInt("group_count"));
 
 			return g;
 		});
 		mapping.register(Mark.class, r -> {
 			var m = new Mark();
-			
+
 			m.setId(r.getObject("mark_id", UUID.class));
 			m.setDiscipline(mapping.forType(Discipline.class).process(r));
 			m.setStudent(mapping.forType(Student.class).process(r));
 			m.setMark(r.getInt("mark_mark"));
 			m.setTime(r.getTimestamp("mark_date"));
-			
+
 			return m;
 		});
 	}
@@ -56,8 +56,9 @@ public class GroupRepository extends SqlRepository {
 	public List<Student> listStudents(UUID group) throws SQLException {
 		return database.queryList(Student.class, listStudents, group);
 	}
-	
+
 	public boolean moveStudent(UUID newId, UUID student, UUID newGroup) throws SQLException {
+		System.out.println("check " + student + " and group " + newGroup);
 		if (database.query(r -> 1, checkMove, newGroup, student) == null) {
 			return false;
 		}
@@ -74,7 +75,7 @@ public class GroupRepository extends SqlRepository {
 		if (database.query(r -> 1, has, g.getId()) == null) {
 			return false;
 		}
-		
+
 		database.execute(update, g.getCode(), g.getDuration(), g.getId());
 		return true;
 	}
@@ -83,15 +84,15 @@ public class GroupRepository extends SqlRepository {
 		if (!has(id)) {
 			return false;
 		}
-		
+
 		database.execute(delete, id);
 		return true;
 	}
-	
+
 	public boolean has(UUID id) throws SQLException {
 		return database.query(r -> 1, has, id) != null;
 	}
-	
+
 	public List<Mark> perfomance(UUID id, int semester, List<UUID> disciplines) throws SQLException {
 		return database.queryList(Mark.class, perfomance, id, semester, disciplines);
 	}

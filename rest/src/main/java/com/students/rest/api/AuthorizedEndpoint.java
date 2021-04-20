@@ -17,6 +17,10 @@ public abstract class AuthorizedEndpoint {
 		}
 		
 		var result = authService.login(header.split("Bearer ")[1]);
+		if (result.isInvalidToken()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
 		if (!result.isUserFound()) {
 			//Old token for deleted user
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

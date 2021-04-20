@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,7 +44,7 @@ public class GroupEndpoint extends AuthorizedEndpoint {
 	}
 	
 	@GetMapping("{id}/students")
-	public ResponseEntity<?> getStudents(@RequestHeader("Authorization") String token, String id) {
+	public ResponseEntity<?> getStudents(@RequestHeader("Authorization") String token, @PathVariable String id) {
 		var status = auth(token);
 		if (status != null) {
 			return status;
@@ -62,7 +63,7 @@ public class GroupEndpoint extends AuthorizedEndpoint {
 	}
 	
 	@PostMapping("{newGroup}/student/{studentId}")
-	public ResponseEntity<?> moveStudent(@RequestHeader("Authorization") String token, String newGroup, String studentId) {
+	public ResponseEntity<?> moveStudent(@RequestHeader("Authorization") String token, @PathVariable String newGroup, @PathVariable String studentId) {
 		var status = auth(token);
 		if (status != null) {
 			return status;
@@ -104,7 +105,7 @@ public class GroupEndpoint extends AuthorizedEndpoint {
 	}
 	
 	@DeleteMapping("{id}")
-	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, String id) {
+	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, @PathVariable String id) {
 		var status = auth(token);
 		if (status != null) {
 			return status;

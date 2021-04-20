@@ -3,9 +3,18 @@ package com.students.service.auth;
 import com.students.service.result.Result;
 
 public class LoginResult extends Result<Token> {
+	private boolean invalidToken;
 	private boolean userFound;
 	private boolean passwordIncorrect;
 	
+	public boolean isInvalidToken() {
+		return invalidToken;
+	}
+
+	public void setInvalidToken(boolean invalidToken) {
+		this.invalidToken = invalidToken;
+	}
+
 	public boolean isUserFound() {
 		return userFound;
 	}

@@ -85,7 +85,7 @@ public class GroupService {
 	public Result<Void> delete(String id) {
 		var result = new Result<Void>();
 		try {
-			result.setNotFound(repo.delete(UUID.fromString(id)));
+			result.setNotFound(!repo.delete(UUID.fromString(id)));
 		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setError(e.getMessage());
@@ -98,7 +98,7 @@ public class GroupService {
 		
 		try {
 			var m = repo.moveStudent(UUID.randomUUID(), UUID.fromString(student), UUID.fromString(newGroup));
-			result.setNotFound(m);
+			result.setNotFound(!m);
 		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setError(e.getMessage());
