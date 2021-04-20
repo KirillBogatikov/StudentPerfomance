@@ -6,6 +6,7 @@ import java.util.UUID;
 public class Mark {
 	private UUID id;
 	private Student student;
+	private Plan plan;
 	private Discipline discipline;
 	private int mark;
 	private Date time;
@@ -28,6 +29,14 @@ public class Mark {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
 	}
 
 	public Discipline getDiscipline() {
