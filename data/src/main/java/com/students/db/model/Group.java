@@ -6,7 +6,6 @@ public class Group {
 	private UUID id;
 	private String code;
 	private int duration;
-	private int count;
 	
 	public Group() {
 		super();
@@ -34,13 +33,5 @@ public class Group {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 }

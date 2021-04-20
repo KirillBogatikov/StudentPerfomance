@@ -10,5 +10,5 @@ SELECT
 FROM "student" AS "s" 
 JOIN "contact" AS "c" ON "s"."contact" = "c"."id" 
 JOIN "personal_data" AS "d" ON "s"."data" = "d"."id"
-WHERE "d"."first_name" ~ ? OR "d"."last_name" ~ :1 OR "d"."patronymic" ~ :1 OR "a"."login" ~ :1 
+WHERE "d"."first_name" ~ ? OR "d"."last_name" ~ ? OR "d"."patronymic" ~ ? OR "c"."phone" ~ ? OR "c"."email" ~ ? 
 OFFSET ? LIMIT ?

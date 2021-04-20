@@ -27,7 +27,7 @@ public abstract class Database {
 				return mapper.process(result);
 			}
 			
-			return null;
+			return mapper.defaultValue();
 		}
 	}
 	

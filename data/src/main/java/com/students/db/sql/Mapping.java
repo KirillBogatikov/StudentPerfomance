@@ -1,6 +1,9 @@
 package com.students.db.sql;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,14 +34,23 @@ public class Mapping {
 	
 	public <T> Mapper<List<T>> forList(Class<T> type) {
 		var mapper = forType(type);
-		return r -> {
-			var list = new ArrayList<T>();
+		return new Mapper<List<T>>() {
+						
+			@Override
+			public List<T> process(ResultSet r) throws SQLException {
+				var list = new ArrayList<T>();
+				
+				do {
+					list.add(mapper.process(r));
+				} while(r.next());
+				
+				return list;
+			} 
 			
-			do {
-				list.add(mapper.process(r));
-			} while(r.next());
-			
-			return list;
+			@Override
+			public List<T> defaultValue() {
+				return Collections.emptyList();
+			}
 		};
 	}
 	
