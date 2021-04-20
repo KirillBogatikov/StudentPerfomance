@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,64 +12,84 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.students.db.model.Discipline;
+import com.students.db.model.Plan;
 import com.students.service.PlanService;
-import com.students.service.result.ListResult;
-import com.students.service.result.SaveResult;
 
 @RestController
-@RequestMapping("api/discipline")
-public class DisciplineEndpoint extends AuthorizedEndpoint {
+@RequestMapping("/api/plan")
+public class PlanEndpoint extends AuthorizedEndpoint {
 	@Autowired
 	private PlanService service;
-	
-	@GetMapping(path = {"list", "search"})
-	public ResponseEntity<?> list(@RequestHeader("Authorization") String token, String query, int offset, int limit) {
+		
+	@PutMapping
+	public ResponseEntity<?> save(@RequestHeader String token, @RequestBody Plan plan) {
 		var status = auth(token);
 		if (status != null) {
 			return status;
 		}
 		
-		ListResult<Discipline> result = service.list(query, offset, limit);
-		if (result.isSuccess()) {
-			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
-		}
-		
-		if (result.isQueryIncorrect()) {
+		var result = service.save(plan);
+		if (result.isNotFound()) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-	
-	@PutMapping
-	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Discipline d) {
-		var status = auth(token);
-		if (status != null) {
-			return status;
-		}
-		
-		SaveResult result = service.save(d);
 		if (result.isSuccess()) {
-			return new ResponseEntity<>(result.getData(), HttpStatus.OK);
-		}
-		if (result.isNotFound()) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@DeleteMapping("{id}")
-	public ResponseEntity<?> delete(@RequestHeader("Authorization") String token, @PathVariable String id) {
+	@PutMapping("{planId}/discipline")
+	public ResponseEntity<?> saveDiscipline(@RequestHeader String token, @RequestBody Discipline discipline, @PathVariable String planId) {
 		var status = auth(token);
 		if (status != null) {
 			return status;
 		}
 		
-		var result = service.delete(id);
+		var result = service.saveDiscipline(planId, discipline);
 		if (result.isNotFound()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@DeleteMapping("{planId}/discipline/{disciplineId}")
+	public ResponseEntity<?> deleteDiscipline(@RequestHeader String token, @PathVariable String planId, @PathVariable String disciplineId) {
+		var status = auth(token);
+		if (status != null) {
+			return status;
+		}
+		
+		var result = service.deleteDiscipline(planId, disciplineId);
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@DeleteMapping("{planId}")
+	public ResponseEntity<?> delete(@RequestHeader String token, @PathVariable String planId) {
+		var status = auth(token);
+		if (status != null) {
+			return status;
+		}
+		
+		var result = service.delete(planId);
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
 		if (result.isSuccess()) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}

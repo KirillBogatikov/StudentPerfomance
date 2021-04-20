@@ -13,14 +13,14 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.students.db.sql.DisciplineRepository;
+import com.students.db.sql.PlanRepository;
 import com.students.db.sql.GroupRepository;
 import com.students.db.sql.SqlDatabase;
 import com.students.db.sql.SqlImporter;
 import com.students.db.sql.StudentRepository;
 import com.students.db.sql.TeacherRepository;
 import com.students.db.sql.UserDataRepository;
-import com.students.service.DisciplineService;
+import com.students.service.PlanService;
 import com.students.service.GroupService;
 import com.students.service.StudentService;
 import com.students.service.TeacherService;
@@ -51,7 +51,7 @@ public class Server {
 	private SqlDatabase database;
 	private AuthService authService;
 	private TeacherService teacherService;
-	private DisciplineService disciplineService;
+	private PlanService disciplineService;
 	private GroupService groupService;
 	private StudentService studentService;
 
@@ -95,10 +95,10 @@ public class Server {
 	}
 
 	@Bean
-	public DisciplineService disciplines() {
+	public PlanService disciplines() {
 		if (disciplineService == null) {
-			var repo = new DisciplineRepository(database);
-			disciplineService = new DisciplineService(repo);
+			var repo = new PlanRepository(database);
+			disciplineService = new PlanService(repo);
 		}
 
 		return disciplineService;
