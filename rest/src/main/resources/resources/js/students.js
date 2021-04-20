@@ -47,6 +47,7 @@ Student.save = function() {
 }
 
 Student.__init_form = function(s) {
+	Student.__actual = s
 	let d = s['data'] || {}
 	let c = s['contact'] || {}
 	
@@ -65,7 +66,7 @@ Student.__init_form = function(s) {
 				group.append(o)
 			}
 			
-			if(Student.__actual) {
+			if(Student.__actual['id']) {
 				StudentAPI.group_of(Student.__actual.id, (g) => {	
 					Student.__actual.group = g
 					group.value = g.id

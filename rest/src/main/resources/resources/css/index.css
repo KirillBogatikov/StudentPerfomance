@@ -165,6 +165,7 @@ BUTTON {
 
 .page .list {
 	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 .page .list TR {
@@ -217,14 +218,13 @@ BUTTON {
 	text-shadow: 2px 2px 5px var(--shadow-color);
 }
 
-.page .actions INPUT[type=number] {
+INPUT[type=number] {
 	width: 100px;
 }
 
 .page .form {
-	width: 50%;
-	max-width: 600px;
-	padding-top: 50px;
+	max-width: 1200px;
+	padding: 50px;
 	padding-bottom: 20px;
 	border-radius: 5px;
 	background: var(--dialog-color);
@@ -232,4 +232,8 @@ BUTTON {
 
 .page .form LABEL {
 	display: inline-block;
+}
+
+#group-students-list {
+	overflow-y: scroll;
 }

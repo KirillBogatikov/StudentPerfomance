@@ -62,7 +62,7 @@ function fadeOut(item, callback) {
 
 window.__popups = []
 
-function popup(message) {
+function popup(message, time) {
 	let popup = document.createElement("div")
 	popup.className = "popup"
 		
@@ -85,7 +85,7 @@ function popup(message) {
 			popup.remove()
 			window.__popups.shift()
 		})
-	}, 5000)
+	}, time || 2000)
 }
 
 function tableCell(row, text, i) {

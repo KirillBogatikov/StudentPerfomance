@@ -1,9 +1,12 @@
 StudentAPI = {
-	group_of: function(id, callback) {
+	group_of: function(id, callback, no_group) {
 		request("GET", "/api/student/" + id + "/group", null, (xhr) => {
 			if (xhr.status == 200) {
 				callback(JSON.parse(xhr.responseText))
 				return
+			} else if (xhr.status == 404 && no_group) {
+				no_group();
+				return;
 			}
 			
 			popup("На сервере произошла непредвиденная ошибка")
@@ -30,7 +33,7 @@ StudentAPI = {
 					message += validation_message("Эл. почта", v['email'], 3, 128, "адреса в формате user@host.com")
 					
 					if (message.length > 0) {
-						popup(message)
+						popup(message, 6000)
 					}
 					
 					break

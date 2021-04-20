@@ -116,6 +116,8 @@ public class StudentService {
 			try {
 				if (s.getId() == null) {
 					s.setId(UUID.randomUUID());
+					s.getData().setId(UUID.randomUUID());
+					s.getContact().setId(UUID.randomUUID());
 					repo.insert(s);
 					return new SaveResult(s.getId());
 				} else {
@@ -135,7 +137,7 @@ public class StudentService {
 	public Result<Void> delete(String id) {
 		var result = new Result<Void>();
 		try {
-			result.setNotFound(repo.delete(UUID.fromString(id)));			
+			result.setNotFound(!repo.delete(UUID.fromString(id)));			
 		} catch(SQLException e) {
 			e.printStackTrace();
 			result.setError(e.getMessage());

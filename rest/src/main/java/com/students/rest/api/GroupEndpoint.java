@@ -81,6 +81,25 @@ public class GroupEndpoint extends AuthorizedEndpoint {
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@DeleteMapping("{group}/student/{studentId}")
+	public ResponseEntity<?> removeStudent(@RequestHeader("Authorization") String token, @PathVariable String group, @PathVariable String studentId) {
+		var status = auth(token);
+		if (status != null) {
+			return status;
+		}
+		
+		var result = service.removeStudent(group, studentId);
+		if (result.isNotFound()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		
+		if (result.isSuccess()) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 	@PutMapping()
 	public ResponseEntity<?> save(@RequestHeader("Authorization") String token, @RequestBody Group g) {
 		var status = auth(token);

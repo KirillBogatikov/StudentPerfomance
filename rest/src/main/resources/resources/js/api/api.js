@@ -22,11 +22,17 @@ function request_list(url, query, offset, limit, callback, silent) {
 		url += "query=" + query + "&"
 	}
 	
-	url += "offset=" + offset + "&limit=" + limit
+	if (typeof(offset) == 'number') {
+		url += "offset=" + offset + "&limit=" + limit
+	} else if(typeof(offset) == 'function') {
+		callback = offset
+		silent = limit
+	}
 	
 	request("GET", url, null, (xhr) => {
 		if (silent && xhr.status == 200) {
 			callback(JSON.parse(xhr.responseText))
+			return
 		}
 		
 		switch(xhr.status) {

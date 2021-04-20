@@ -23,19 +23,19 @@
 		<nav>
 			<span id="back" class="material-icons" onclick="back()">arrow_back</span>
 			<div id="menu">
-				<div class="item" onclick="showTeachers()">
+				<div class="item" onclick="showPage(Teacher, 'teachers', __teachers)">
 					<span class="title">Преподаватели</span>
 					<div class="bookmarks">
 						<ul class="no-marker" id="teacher-bookmarks"></ul>
 					</div>
 				</div>
-				<div class="item" onclick="showStudents()">
+				<div class="item" onclick="showPage(Student, 'students', __students)">
 					<span class="title">Студенты</span>
 					<div class="bookmarks">
 						<ul class="no-marker" id="student-bookmarks"></ul>
 					</div>
 				</div>
-				<div class="item" onclick="showGroups()">
+				<div class="item" onclick="showPage(Group, 'groups', __groups)">
 					<span class="title">Группы</span>
 					<div class="bookmarks">
 						<ul class="no-marker" id="group-bookmarks"></ul>
@@ -73,6 +73,56 @@
 					</div>
 				</div>
 			</div>
+			<div id="teachers" class="page">
+				<div class="actions">
+					<input id="teachers-query" type="text" placeholder="Поиск..."/><br>
+					<div class="size">
+						Выбрать, начиная с <input type="number" min="0" id="teachers-offset" value="1"/>
+						не более <input type="number" min="0" max="1000" id="teachers-limit" value="10"/> записей
+						<span class="material-icons" onclick="Teacher.applyFilter()">done</span>
+						<span class="material-icons" onclick="Teacher.add()">add</span>
+					</div>
+				</div>
+				<hr/>
+				<table id="teacher-list" class="list"></table>
+				<div class="container">
+					<div id="student-form" class="form">
+						 <label for="first-name">Имя: </label><input id="teacher-first-name" type="text"/><br/>
+						 <label for="last-name">Фамилия: </label><input id="teacher-last-name" type="text"/><br/>
+						 <label for="patronymic">Отчество: </label><input id="teacher-patronymic" type="text"/><br/>
+						 <label for="login">Логин: </label><input id="teacher-login" type="text"/><br/>
+						 <label for="password">Пароль: </label><input id="teacher-password" type="text"/><br/>
+						 <button onclick="Teacher.save()">Сохранить</button>
+						 <span class="form-cancel" onclick="Teacher.cancel()">Отмена</span>
+					</div>
+				</div>
+			</div>
+			<div id="groups" class="page">
+				<div class="actions">
+					<input id="groups-query" type="text" placeholder="Поиск..."/><br>
+					<div class="size">
+						Выбрать, начиная с <input type="number" min="0" id="groups-offset" value="1"/>
+						не более <input type="number" min="0" max="1000" id="groups-limit" value="10"/> записей
+						<span class="material-icons" onclick="Group.applyFilter()">done</span>
+						<span class="material-icons" onclick="Group.add()">add</span>
+					</div>
+				</div>
+				<hr/>
+				<table id="group-list" class="list"></table>
+				<div class="container">
+					<div id="group-form" class="form">
+						 <label for="code">Код: </label><input id="group-code" type="text"/><br/>
+						 <label for="duration">Срок обучения: </label><input id="group-duration" type="number" min="1"/>семестров<br/>
+						 <div id="group-students">
+						 	Добавить студента: <select id="group-students-select"></select>
+							<span class="material-icons" onclick="Group.addStudent()">done</span><br>
+						 	<table id="group-students-list" class="list"></table>
+						 </div>
+						 <button onclick="Group.save()">Сохранить</button>
+						 <span class="form-cancel" onclick="Group.cancel()">Отмена</span>
+					</div>
+				</div>
+			</div>
 		</main>
 		<footer>
 		
@@ -92,5 +142,7 @@
 		<script src="/js/index.js"></script>
 		<script src="/js/auth.js"></script>
 		<script src="/js/students.js"></script>
+		<script src="/js/groups.js"></script>
+		<script src="/js/teacher.js"></script>
 	</body>
 </html>

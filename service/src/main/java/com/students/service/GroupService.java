@@ -74,7 +74,7 @@ public class GroupService {
 				return new SaveResult(g.getId());
 			} else {
 				var u = repo.update(g);
-				return new SaveResult(g.getId(), u);
+				return new SaveResult(g.getId(), !u);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,6 +98,20 @@ public class GroupService {
 		
 		try {
 			var m = repo.moveStudent(UUID.randomUUID(), UUID.fromString(student), UUID.fromString(newGroup));
+			result.setNotFound(!m);
+		} catch(SQLException e) {
+			e.printStackTrace();
+			result.setError(e.getMessage());
+		}
+		
+		return result;
+	}
+
+	public Result<Void> removeStudent(String oldGroup, String student) {
+		var result = new Result<Void>();
+		
+		try {
+			var m = repo.removeStudent(UUID.fromString(oldGroup), UUID.fromString(student));
 			result.setNotFound(!m);
 		} catch(SQLException e) {
 			e.printStackTrace();

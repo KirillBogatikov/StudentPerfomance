@@ -9,7 +9,7 @@ public class SaveResult extends Result<UUID> {
 	private Map<String, ValidationResult> validation;
 	
 	public SaveResult(UUID data) {
-		this(data, true);
+		this(data, false);
 	}
 	
 	public SaveResult(UUID data, boolean notFound) {

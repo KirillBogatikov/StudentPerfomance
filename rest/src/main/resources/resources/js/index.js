@@ -36,9 +36,50 @@ index_all = function() {
 			email: query("#student-email"),
 			group: query("#student-group")
 		}
-	},
+	}
+	__teachers = {
+		page: query("#teachers"),
+		actions: {
+			block: query("#teachers .actions"),
+			query_field: query("#teachers-query"),
+			offset: query("#teachers-offset"),
+			limit: query("#teachers-limit"),
+		},
+		list: query("#teachers .list"),
+		container: query("#teachers .container"),
+		form: query("#teachers .container .form"),
+		fields: {
+			first_name: query("#teacher-first-name"),
+			last_name: query("#teacher-last-name"),
+			patronymic: query("#teacher-patronymic"),
+			login: query("#teacher-login"),
+			password: query("#teacher-password")
+		}
+	}
+	__groups = {
+		page: query("#groups"),
+		actions: {
+			block: query("#groups .actions"),
+			query_field: query("#groups-query"),
+			offset: query("#groups-offset"),
+			limit: query("#groups-limit"),
+		},
+		list: query("#groups .list"),
+		container: query("#groups .container"),
+		form: query("#groups .container .form"),
+		fields: {
+			code: query("#group-code"),
+			duration: query("#group-duration"),
+			students: {
+				container: query("#group-students"),
+				list: query("#group-students-list"),
+				select: query("#group-students-select")
+			}
+		}
+	}
 	__nav = query("NAV")
 	__main = query("MAIN")
+	__previous = null
 }
 
 onload = function() {
@@ -65,26 +106,37 @@ onload = function() {
 	fixFormLabel("#student");
 	fixFormLabel("#auth");
 	
-	(function() {
-		query(".container").remove()
-		query(".page").remove()
-	})();
-	
 	for (var i in events.onload) {
 		events.onload[i]();
 	}
 	
+	(function() {
+		query(".container", true).forEach(t => t.remove())
+		query(".page", true).forEach(t => t.remove())
+	})();
+	
 	if (logged_in()) {
-		let params = new URLSearchParams(window.location.search)
-		if (params.get("students") == "") {
-			showStudents()
+		let query = (window.location.search + "").split("?")[1]
+		if (query) {
+			let params = query.split("&")
+			for (let i in params) {
+				if (["students", "teachers", "groups"].find(t => t == params[i])) {
+					let className = params[i][0].toUpperCase() + params[i].substring(1, params[i].length - 1)
+					showPage(window[className], params[i], window["__" + params[i]])
+					break
+				}
+			}
 		}
 	}
 }
 
-function showStudents() {
-	__main.append(__students.page)
-	fadeIn(__students.page)
-	Student.applyFilter()
-	history.pushState("", "",  "?students")
+function showPage(api, name, indexed) {
+	if (__previous) {
+		__previous.remove()
+	}
+	__main.append(indexed.page)
+	fadeIn(indexed.page)
+	api.applyFilter()
+	history.pushState("", "",  "?" + name)
+	__previous = indexed.page
 }
