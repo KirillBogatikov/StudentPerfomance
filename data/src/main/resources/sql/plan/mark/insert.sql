@@ -1,1 +1,0 @@
-INSERT INTO mark ("id", "student", "plan_discipline", "mark", "date") VALUES (?, ?, ?, ?, ?);

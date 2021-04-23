@@ -41,26 +41,17 @@ CREATE TABLE IF NOT EXISTS "group_students" (
     "student" uuid REFERENCES "student"("id") ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS "plan" (
+CREATE TABLE IF NOT EXISTS "discipline" (
     "id" uuid PRIMARY KEY,
-    "group" uuid REFERENCES "group"("id") ON DELETE CASCADE,
-    "semester" smallint
-);
-
-CREATE TABLE IF NOT EXISTS "plan_discipline" (
-    "id" uuid PRIMARY KEY,
-    "plan" uuid REFERENCES "plan"("id") ON DELETE CASCADE,
     "teacher" uuid REFERENCES "teacher"("id") ON DELETE CASCADE,
-    "name" text,
-    "hours" smallint
+    "name" text
 );
 
 CREATE TABLE IF NOT EXISTS "mark" (
     "id" uuid PRIMARY KEY,
     "student" uuid REFERENCES "student"("id") ON DELETE CASCADE,
-    "plan_discipline" uuid REFERENCES "plan_discipline"("id") ON DELETE CASCADE,
-    "mark" smallint,
-    "date" timestamp
+    "discipline" uuid REFERENCES "discipline"("id") ON DELETE CASCADE,
+    "mark" smallint
 );
 
 CREATE TABLE IF NOT EXISTS "imports" (

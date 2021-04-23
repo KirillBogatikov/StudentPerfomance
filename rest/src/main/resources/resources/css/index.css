@@ -161,6 +161,7 @@ BUTTON {
 	height: 2px;
 	background: black;
 	border-radius: 1px;
+	overflow-y: auto;
 }
 
 .page .list {

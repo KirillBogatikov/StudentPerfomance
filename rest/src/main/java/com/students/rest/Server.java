@@ -13,15 +13,16 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.students.db.sql.PlanRepository;
 import com.students.db.sql.GroupRepository;
+import com.students.db.sql.MarkRepository;
 import com.students.db.sql.SqlDatabase;
 import com.students.db.sql.SqlImporter;
 import com.students.db.sql.StudentRepository;
 import com.students.db.sql.TeacherRepository;
 import com.students.db.sql.UserDataRepository;
-import com.students.service.PlanService;
 import com.students.service.GroupService;
+import com.students.service.MarkService;
+import com.students.service.PerfomanceService;
 import com.students.service.StudentService;
 import com.students.service.TeacherService;
 import com.students.service.auth.AuthService;
@@ -51,9 +52,10 @@ public class Server {
 	private SqlDatabase database;
 	private AuthService authService;
 	private TeacherService teacherService;
-	private PlanService disciplineService;
 	private GroupService groupService;
 	private StudentService studentService;
+	private MarkService markService;
+	private PerfomanceService perfomanceService;
 
 	public Server() {
 		key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(cfg.secret));
@@ -95,16 +97,6 @@ public class Server {
 	}
 
 	@Bean
-	public PlanService disciplines() {
-		if (disciplineService == null) {
-			var repo = new PlanRepository(database);
-			disciplineService = new PlanService(repo);
-		}
-
-		return disciplineService;
-	}
-
-	@Bean
 	public GroupService groups() {
 		if (groupService == null) {
 			var repo = new GroupRepository(database);
@@ -122,6 +114,28 @@ public class Server {
 		}
 
 		return studentService;
+	}
+
+	@Bean
+	public MarkService marks() {
+		if (markService == null) {
+			var repo = new MarkRepository(database);
+			markService = new MarkService(repo);
+		}
+
+		return markService;
+	}
+
+	@Bean
+	public PerfomanceService perfomance() {
+		if (perfomanceService == null) {
+			var marks = new MarkRepository(database);
+			var groups = new GroupRepository(database);
+			var students = new StudentRepository(database);
+			perfomanceService = new PerfomanceService(marks, groups, students);
+		}
+
+		return perfomanceService;
 	}
 
 	@Bean

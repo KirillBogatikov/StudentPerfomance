@@ -1,0 +1,1 @@
+INSERT INTO mark ("id", "student", "discipline", "mark") VALUES (?, ?, ?, ?);

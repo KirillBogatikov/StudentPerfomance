@@ -1,15 +1,12 @@
 package com.students.db.model;
 
-import java.util.Date;
 import java.util.UUID;
 
 public class Mark {
 	private UUID id;
 	private Student student;
-	private Plan plan;
 	private Discipline discipline;
 	private int mark;
-	private Date time;
 	
 	public Mark() {
 		super();
@@ -31,14 +28,6 @@ public class Mark {
 		this.student = student;
 	}
 
-	public Plan getPlan() {
-		return plan;
-	}
-
-	public void setPlan(Plan plan) {
-		this.plan = plan;
-	}
-
 	public Discipline getDiscipline() {
 		return discipline;
 	}
@@ -53,13 +42,5 @@ public class Mark {
 
 	public void setMark(int mark) {
 		this.mark = mark;
-	}
-
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
 	}
 }

@@ -65,8 +65,8 @@ index_all = function() {
 			limit: query("#groups-limit"),
 		},
 		list: query("#groups .list"),
-		container: query("#groups .container"),
-		form: query("#groups .container .form"),
+		container: query("#groups #group-form-container"),
+		form: query("#groups #group-form"),
 		fields: {
 			code: query("#group-code"),
 			duration: query("#group-duration"),
@@ -74,6 +74,20 @@ index_all = function() {
 				container: query("#group-students"),
 				list: query("#group-students-list"),
 				select: query("#group-students-select")
+			}
+		},
+		perfomance: {
+			container: query("#perfomance-form-container"),
+			form: query("#perfomance-form"),
+			code: query("#perfomance-code"),
+			add_discipline: {
+				name: query("#prefomace-discipline-name"),
+				select: query("#perfomance-discipline-teacher")
+			},
+			add_mark: {
+				select: query("#perfomance-student"),
+				name: query("#prefomace-discipline"),
+				mark: query("#perfomance-mark")
 			}
 		}
 	}

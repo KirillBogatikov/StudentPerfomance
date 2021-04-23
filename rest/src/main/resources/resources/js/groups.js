@@ -142,3 +142,114 @@ Group.applyFilter = function() {
 		})
 	}
 }
+
+__user_name = function(t) {
+	return t.data.firstName + " " + (t.data.patronymic || "") +  " " + t.data.lastName
+}
+
+Group.hidePerfomance = function() {
+	fadeOut(__groups.perfomance.container, () => {
+		Group.__init_perfomance_form({})
+		__groups.perfomance.container.remove()
+	})
+}
+
+Group.__init_perfomance_form = function() {
+	with(__groups.perfomance) {		
+		code.innerHTML = ""
+		add_discipline.name.value = ""
+		add_discipline.select.value = ""
+		add_mark.select.value = ""
+		add_mark.mark.value = "1"
+	}
+}
+
+Group.perfomance = function(i) {
+	Group.__init_perfomance_form()
+	let g = __groups_cache[i]
+	Group.__actual_group = g
+	
+	with(__groups.perfomance) {		
+		code.innerHTML = g.code
+		
+		TeacherAPI.list(null, null, null, l => {
+			add_discipline.select.innerHTML = ""
+			
+			let def = elem("option", null, "преподаватель не выбран")
+			def.value = ""
+			add_discipline.select.append(def)
+			
+			for (let i in l) {
+				let o = elem("option", null, __user_name(l[i]))
+				o.value = l[i].id
+				add_discipline.select.append(o)
+			}
+		})
+		
+		GroupAPI.get_students(g.id, (g) => {
+			add_mark.select.innerHTML = ""
+			
+			let def = elem("option", null, "студент не выбран")
+			def.value = ""
+			add_mark.select.append(def)
+			
+			for (let i in g) {
+				let o = elem("option", null, __user_name(g[i]))
+				o.value = g[i].id
+				add_mark.select.append(o)
+			}
+		})
+		
+		MarkAPI.list_disciplines(d => {
+			add_mark.name.innerHTML = ""
+			
+			let def = elem("option", null, "дисциплина не выбрана")
+			def.value = ""
+			add_mark.name.append(def)
+			
+			for (let i in d) {
+				let o = elem("option", null, d[i].name + " - " + __user_name(d[i].teacher))
+				o.value = d[i].id
+				add_mark.name.append(o)
+			}
+		})
+		
+		__groups.page.append(container)
+		fadeIn(container)
+	}
+}
+
+Group.addDiscipline = function() {
+	with (__groups.perfomance.add_discipline) {
+		if (select.value == "") {
+			popup("Выберите преподавателя")
+			return
+		}
+		
+		MarkAPI.add_discipline({ "name": name.value, "teacher": { "id": select.value } }, () => {
+			Group.hidePerfomance()
+		})
+	}
+}
+
+Group.addMark = function() {
+	with(__groups.perfomance.add_mark) {
+		if (select.value == "") {
+			popup("Выберите студента")
+			return
+		}
+		
+		if (name.value == "") {
+			popup("Выберите дисцплину")
+			return
+		}
+		
+		MarkAPI.add_mark({ "student": { "id": select.value }, "discipline": { "id": name.value }, "mark": mark.value })
+	}
+}
+
+Group.exportPerfomance = function(student) {
+	let sid = student ? __groups.perfomance.add_mark.select.value : null
+	let gid = student ? null : Group.__actual_group.id
+	MarkAPI.export_perfomance(sid, gid)
+}

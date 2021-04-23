@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
-import com.students.db.model.Discipline;
 import com.students.db.model.Group;
-import com.students.db.model.Mark;
 import com.students.db.model.Student;
 import com.students.db.repo.Database;
 
@@ -18,8 +16,9 @@ public class GroupRepository extends SqlRepository {
 			search = readText(DIR, "search.sql"),
 			listStudents = readText(DIR, "list_students.sql"), insert = readText(DIR, "insert.sql"),
 			update = readText(DIR, "update.sql"), delete = readText(DIR, "delete.sql"),
-			perfomance = readText(DIR, "perfomance.sql"), move = readText(DIR, "move.sql"),
-			checkMove = readText(DIR, "check_move.sql"), remove = readText(DIR, "remove.sql");
+			move = readText(DIR, "move.sql"),
+			checkMove = readText(DIR, "check_move.sql"), remove = readText(DIR, "remove.sql"),
+			byStudent = readText(DIR, "by_student.sql");
 
 	public GroupRepository(Database database) {
 		super(database);
@@ -32,17 +31,14 @@ public class GroupRepository extends SqlRepository {
 
 			return g;
 		});
-		mapping.register(Mark.class, r -> {
-			var m = new Mark();
-
-			m.setId(r.getObject("mark_id", UUID.class));
-			m.setDiscipline(mapping.forType(Discipline.class).process(r));
-			m.setStudent(mapping.forType(Student.class).process(r));
-			m.setMark(r.getInt("mark_mark"));
-			m.setTime(r.getTimestamp("mark_date"));
-
-			return m;
-		});
+	}
+	
+	public String code(UUID id) throws SQLException {
+		return database.query(r -> r.getString("group_code"), "SELECT g.code as group_code FROM \"group\" AS g WHERE id = ?", id);
+	}
+	
+	public Group getStudentGroup(UUID student) throws SQLException {
+		return database.query(Group.class, byStudent, student);
 	}
 
 	public List<Group> list(int offset, int limit) throws SQLException {
@@ -91,10 +87,6 @@ public class GroupRepository extends SqlRepository {
 
 	public boolean has(UUID id) throws SQLException {
 		return database.query(r -> 1, has, id) != null;
-	}
-
-	public List<Mark> perfomance(UUID id, int semester, List<UUID> disciplines) throws SQLException {
-		return database.queryList(Mark.class, perfomance, id, semester, disciplines);
 	}
 
 	public boolean removeStudent(UUID oldGroup, UUID student) throws SQLException {

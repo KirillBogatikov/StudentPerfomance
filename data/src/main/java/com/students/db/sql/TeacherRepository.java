@@ -23,7 +23,15 @@ public class TeacherRepository extends SqlRepository {
 		mapping.register(Teacher.class, r -> {
 			var t = new Teacher();
 			t.setId(UUID.fromString(r.getString("teacher_id")));
-			t.setAuth(mapping.forType(Auth.class).process(r));
+			
+			try {
+				t.setAuth(mapping.forType(Auth.class).process(r));
+			} catch(SQLException e) {
+				if (!e.getMessage().contains("auth_id")) {
+					e.printStackTrace();
+				}
+			}
+			
 			t.setData(mapping.forType(PersonalData.class).process(r));
 			return t;
 		});
