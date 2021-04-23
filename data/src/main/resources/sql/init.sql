@@ -53,10 +53,3 @@ CREATE TABLE IF NOT EXISTS "mark" (
     "discipline" uuid REFERENCES "discipline"("id") ON DELETE CASCADE,
     "mark" smallint
 );
-
-CREATE TABLE IF NOT EXISTS "imports" (
-	"id" uuid PRIMARY KEY,
-	"table" text,
-	"version" int,
-	"date" timestamp
-);

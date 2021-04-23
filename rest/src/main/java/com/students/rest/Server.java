@@ -13,10 +13,10 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.students.db.migrations.Migrator;
 import com.students.db.sql.GroupRepository;
 import com.students.db.sql.MarkRepository;
 import com.students.db.sql.SqlDatabase;
-import com.students.db.sql.SqlImporter;
 import com.students.db.sql.StudentRepository;
 import com.students.db.sql.TeacherRepository;
 import com.students.db.sql.UserDataRepository;
@@ -61,11 +61,9 @@ public class Server {
 		key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(cfg.secret));
 		database = new SqlDatabase(cfg.jdbc);
 
-		var importer = new SqlImporter(cfg.salt, cfg.saltPosition, database);
 		try {
-			importer.importTeachers();
-			importer.importStudents();
-			importer.importGroups();
+			var migrator = new Migrator(cfg.salt, cfg.saltPosition, database);
+			migrator.migrate();
 		} catch (SQLException | IOException e) {
 			throw new RuntimeException(e);
 		}
