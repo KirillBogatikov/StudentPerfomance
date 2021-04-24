@@ -16,6 +16,10 @@
 	min-height: 100%;
 }
 
+#ad IMG {
+	width: 100%;
+}
+
 #landing #auth {
 	position: fixed;
 	top: 0px;
