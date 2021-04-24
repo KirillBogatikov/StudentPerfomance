@@ -155,12 +155,11 @@ public class Server {
 			cfg = mapper.readValue(args[0], Config.class);
 		} else {
 			cfg = new Config();
-			cfg.jdbc = System.getProperty("DATABASE_URL");
-			cfg.host = System.getProperty("SERVER_HOST");
-			cfg.secret = System.getProperty("SECURITY_SECRET");
-			cfg.salt = System.getProperty("SECURITY_SALT");
-			System.out.println("==============================================\n" + System.getProperties() + ":" + System.getProperty("SECURITY_SALT_INDEX"));
-			cfg.saltPosition = Integer.valueOf(System.getProperty("SECURITY_SALT_INDEX"));
+			cfg.jdbc = System.getenv("DATABASE_URL");
+			cfg.host = System.getenv("SERVER_HOST");
+			cfg.secret = System.getenv("SECURITY_SECRET");
+			cfg.salt = System.getenv("SECURITY_SALT");
+			cfg.saltPosition = Integer.valueOf(System.getenv("SECURITY_SALT_INDEX"));
 		}
 		SpringApplication.run(Server.class, args);
 		
