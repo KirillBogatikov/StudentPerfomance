@@ -155,6 +155,7 @@ public class Server {
 			cfg = mapper.readValue(args[0], Config.class);
 		} else {
 			cfg = new Config();
+			System.out.println(System.getProperties());
 			cfg.jdbc = System.getProperty("DATABASE_URL");
 			cfg.host = System.getProperty("SERVER_HOST");
 			cfg.secret = System.getProperty("SECURITY_SECRET");
