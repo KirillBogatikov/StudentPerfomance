@@ -235,6 +235,7 @@ INPUT[type=number] {
 	display: inline-block;
 }
 
-#group-students-list {
+#group-students {
+	margin-bottom: 25px;
 	overflow-y: scroll;
 }

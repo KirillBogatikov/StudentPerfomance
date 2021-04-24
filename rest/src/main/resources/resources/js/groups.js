@@ -1,7 +1,8 @@
 Group = {}
 
 events.onload.push(() => {
-	__groups.fields.students.list.style["max-height"] = __nav.offsetHeight - __groups.form.offsetHeight - 200
+	__groups.fields.students.container.style["max-height"] = __nav.offsetHeight - __groups.form.offsetHeight
+	__groups.fields.students.container.style["overflow-y"] = "auto"
 })
 
 Group.add = function() {
