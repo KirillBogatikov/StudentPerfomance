@@ -69,6 +69,21 @@ public class Api {
 
 			result.add(t);
 		}
+		
+		var def = new Teacher();
+		var a = new Auth();
+		a.setId(UUID.randomUUID());
+		a.setLogin("test");
+		a.setPassword("test");
+		def.setAuth(a);
+		var d = new PersonalData();
+		d.setId(UUID.randomUUID());
+		d.setFirstName("Антон");
+		d.setLastName("Лапенко");
+		d.setPatronymic("Владимирович");
+		def.setData(d);
+		
+		result.add(def);
 
 		return result;
 	}

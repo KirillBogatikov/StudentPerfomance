@@ -150,8 +150,17 @@ public class Server {
 	public static void main(String[] args) throws Exception {
 		Extractor.setLoader(Server.class.getClassLoader());
 
-		var mapper = new ObjectMapper();
-		cfg = mapper.readValue(args[0], Config.class);
+		if (args.length > 0) {
+			var mapper = new ObjectMapper();
+			cfg = mapper.readValue(args[0], Config.class);
+		} else {
+			cfg = new Config();
+			cfg.jdbc = System.getProperty("DATABASE_URL");
+			cfg.host = System.getProperty("SERVER_HOST");
+			cfg.secret = System.getProperty("SECURITY_SECRET");
+			cfg.salt = System.getProperty("SECURITY_SALT");
+			cfg.saltPosition = Integer.valueOf(System.getProperty("SECURIT_SALT_INDEX"));
+		}
 		SpringApplication.run(Server.class, args);
 		
 		var thread = new Thread(() -> {
