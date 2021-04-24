@@ -1,0 +1,1 @@
+web: java -jar -server --enable-preview rest/target/rest-0.0.1.jar
