@@ -1,12 +1,9 @@
 package com.students.db.migrations;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.students.db.model.Student;
 import com.students.db.model.Teacher;
 import com.students.db.repo.Database;

@@ -36,15 +36,15 @@ public class Generator {
 			var auth = new Auth();
 			auth.setId(UUID.randomUUID());
 			
-			var login = Randomus.login(bio[0], bio[1]);
+			var login = Randomus.login(bio[1], bio[0]);
 			auth.setLogin(login);
 			auth.setPassword(login);
 			t.setAuth(auth);
 			
 			var data = new PersonalData();
 			data.setId(UUID.randomUUID());
-			data.setFirstName(bio[0]);
-			data.setLastName(bio[1]);
+			data.setFirstName(bio[1]);
+			data.setLastName(bio[0]);
 			data.setPatronymic(bio[2]);
 			t.setData(data);
 			
@@ -69,8 +69,8 @@ public class Generator {
 			
 			var data = new PersonalData();
 			data.setId(UUID.randomUUID());
-			data.setFirstName(bio[0]);
-			data.setLastName(bio[1]);
+			data.setFirstName(bio[1]);
+			data.setLastName(bio[0]);
 			data.setPatronymic(bio[2]);
 			s.setData(data);
 			
@@ -78,7 +78,7 @@ public class Generator {
 			contact.setId(UUID.randomUUID());
 			contact.setPhone(Randomus.phone());
 			
-			var login = Randomus.login(bio[0], bio[1]);
+			var login = Randomus.login(bio[1], bio[0]);
 			contact.setEmail(Randomus.email(login));
 			s.setContact(contact);
 			
