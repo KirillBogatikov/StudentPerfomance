@@ -155,7 +155,7 @@ public class Server {
 			cfg = mapper.readValue(args[0], Config.class);
 		} else {
 			cfg = new Config();
-			cfg.jdbc = System.getenv("DATABASE_URL");
+			cfg.jdbc = System.getenv("PG_DATABASE_URL");
 			cfg.host = System.getenv("SERVER_HOST");
 			cfg.secret = System.getenv("SECURITY_SECRET");
 			cfg.salt = System.getenv("SECURITY_SALT");
