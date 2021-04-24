@@ -13,7 +13,7 @@ public class Migrator {
 	private Api api;
 	private SqlImporter importer;
 	
-	public static final int TeachersCount = 20, StudentCount = 400, StudentsPerGroup = 25;
+	public static final int TeachersCount = 20, StudentCount = 50, StudentsPerGroup = 25;
 	
 	public Migrator(String salt, int saltPosition, Database database) throws SQLException {
 		api = new Api();

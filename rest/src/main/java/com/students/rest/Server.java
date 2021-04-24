@@ -61,12 +61,15 @@ public class Server {
 		key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(cfg.secret));
 		database = new SqlDatabase(cfg.jdbc);
 
-		try {
-			var migrator = new Migrator(cfg.salt, cfg.saltPosition, database);
-			migrator.migrate();
-		} catch (SQLException | IOException e) {
-			throw new RuntimeException(e);
-		}
+		var thread = new Thread(() -> {
+			try {
+				var migrator = new Migrator(cfg.salt, cfg.saltPosition, database);
+				migrator.migrate();
+			} catch (SQLException | IOException e) {
+				throw new RuntimeException(e);
+			}
+		});
+		thread.start();
 	}
 
 	@Bean
