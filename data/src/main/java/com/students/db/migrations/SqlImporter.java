@@ -95,6 +95,7 @@ public class SqlImporter extends SqlRepository {
 			}
 			
 			if (i % step == 0) {
+				System.gc();
 				System.out.printf("Groups - %3.0f%%\n", ((float)i / groups.size()) * 100);
 			}
 		}

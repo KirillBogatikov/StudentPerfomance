@@ -42,6 +42,9 @@ public class Migrator {
 			teachers = json.generateTeachers();
 			students = json.generateStudents();
 			groups = json.generateGroups();
+			
+			json = null;
+			System.gc();
 		} else {
 			System.out.printf("Generating %d teachers...\n", TeachersCount);
 			teachers = api.generateTeachers(TeachersCount);
@@ -71,12 +74,6 @@ public class Migrator {
 		
 		System.out.println("Saving meta");
 		importer.saveImport();
-		
-		try(FileOutputStream fos = new FileOutputStream("teachers_backup.json")) {
-			var mapper = new ObjectMapper();
-			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			mapper.writeValue(fos, teachers);
-		}
 		
 		long end = System.currentTimeMillis() - start;
 		System.out.printf("Migrated with %dm %ds %dms\n", end / 60000, (end / 1000) % 60, end % 1000);
