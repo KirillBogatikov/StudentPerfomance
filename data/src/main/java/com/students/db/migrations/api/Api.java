@@ -71,6 +71,7 @@ public class Api {
 		}
 		
 		var def = new Teacher();
+		def.setId(UUID.randomUUID());
 		var a = new Auth();
 		a.setId(UUID.randomUUID());
 		a.setLogin("test");
