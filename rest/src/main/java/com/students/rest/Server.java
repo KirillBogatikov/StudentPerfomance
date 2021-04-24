@@ -64,7 +64,7 @@ public class Server {
 		var thread = new Thread(() -> {
 			try {
 				var migrator = new Migrator(cfg.salt, cfg.saltPosition, database);
-				migrator.migrate();
+				migrator.migrate(true);
 			} catch (SQLException | IOException e) {
 				throw new RuntimeException(e);
 			}

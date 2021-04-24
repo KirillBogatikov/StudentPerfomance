@@ -1,4 +1,4 @@
-package com.students.db.migrations.api;
+package me.randomuser.api;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +19,7 @@ import com.students.db.model.PersonalData;
 import com.students.db.model.Student;
 import com.students.db.model.Teacher;
 
-public class Api {
+public class RandomUserApi {
 	private static final String API_URL = "https://randomuser.me/api/";
 	private Random random = new Random();
 

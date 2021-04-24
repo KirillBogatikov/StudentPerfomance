@@ -1,4 +1,4 @@
-package com.students.db.migrations.api;
+package me.randomuser.api;
 
 public class Name {
 	private String first;

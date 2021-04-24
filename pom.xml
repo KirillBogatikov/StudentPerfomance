@@ -17,6 +17,7 @@
 		<module>functional</module>
 		<module>rest</module>
 		<module>service</module>
+		<module>data-generator</module>
 	</modules>
 	<properties>
 		<junit.version>4.13.1</junit.version>

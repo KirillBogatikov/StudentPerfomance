@@ -1,0 +1,261 @@
+[ {
+  "id" : "6443d760-35f8-4dbc-b5a7-e656e38ff7f9",
+  "auth" : {
+    "id" : "2b009589-dbaf-4439-9b43-d282caee34a4",
+    "login" : "volkov_kyryll",
+    "password" : "volkov_kyryll"
+  },
+  "data" : {
+    "id" : "2fce34c1-3985-46e7-bb79-96eac7e45917",
+    "firstName" : "Волков",
+    "lastName" : "Кирилл",
+    "patronymic" : "Матвеевич"
+  }
+}, {
+  "id" : "401ac5d8-afa6-433f-8de9-23bc39ec1997",
+  "auth" : {
+    "id" : "eb34271d-8a84-4531-92e9-ee0bf7ecc68e",
+    "login" : "novykova_mary",
+    "password" : "novykova_mary"
+  },
+  "data" : {
+    "id" : "a286a704-c17c-45b4-958c-f7cd7dc01b9e",
+    "firstName" : "Новикова",
+    "lastName" : "Мария",
+    "patronymic" : "Алексеевна"
+  }
+}, {
+  "id" : "2e6a6fd5-2072-4d04-a169-199c7aba70ac",
+  "auth" : {
+    "id" : "349a32b8-e32d-4929-9682-40035a1c7f3e",
+    "login" : "medvedev_nykyta",
+    "password" : "medvedev_nykyta"
+  },
+  "data" : {
+    "id" : "96515e37-41cc-4263-be6b-48a7bf8c8a20",
+    "firstName" : "Медведев",
+    "lastName" : "Никита",
+    "patronymic" : "Саввич"
+  }
+}, {
+  "id" : "8ea1296d-f9d5-4e31-a104-4ea6f0347c65",
+  "auth" : {
+    "id" : "f5b516b2-c13a-49c5-8ff5-9fba57983e1d",
+    "login" : "ygnatov_luka",
+    "password" : "ygnatov_luka"
+  },
+  "data" : {
+    "id" : "8c07120f-b9b0-46ae-a33b-d3d30d0b1149",
+    "firstName" : "Игнатов",
+    "lastName" : "Лука",
+    "patronymic" : "Владимирович"
+  }
+}, {
+  "id" : "46b50a62-f32c-4942-84d3-e2c0ed556762",
+  "auth" : {
+    "id" : "453d8771-e468-45f0-b745-055b6385eb41",
+    "login" : "samoilov_dmytryi",
+    "password" : "samoilov_dmytryi"
+  },
+  "data" : {
+    "id" : "2c61d394-2b85-41ab-9725-a0e98e2bd47a",
+    "firstName" : "Самойлов",
+    "lastName" : "Дмитрий",
+    "patronymic" : "Константинович"
+  }
+}, {
+  "id" : "8c88ad22-b739-4db5-8cdb-0c861e780452",
+  "auth" : {
+    "id" : "61dd4302-7e5d-4ed3-b90f-182cafc11c08",
+    "login" : "panfylov_myron",
+    "password" : "panfylov_myron"
+  },
+  "data" : {
+    "id" : "003e29ac-b774-4cef-9881-a805cae2422f",
+    "firstName" : "Панфилов",
+    "lastName" : "Мирон",
+    "patronymic" : "Артемьевич"
+  }
+}, {
+  "id" : "2403c7cd-577a-4955-9c3e-62ede54df6de",
+  "auth" : {
+    "id" : "3ca099f2-08f1-4ec1-a446-64fbb6004e14",
+    "login" : "fylyppova_aleksandra",
+    "password" : "fylyppova_aleksandra"
+  },
+  "data" : {
+    "id" : "098f2eb2-e3aa-4f35-a8f6-ca7bd4284af5",
+    "firstName" : "Филиппова",
+    "lastName" : "Александра",
+    "patronymic" : "Глебовна"
+  }
+}, {
+  "id" : "84070738-2b2a-4b04-b9de-2ff43f617c31",
+  "auth" : {
+    "id" : "96eab4d1-f412-46da-8b70-630ffd8d05cf",
+    "login" : "zharova_vyktory",
+    "password" : "zharova_vyktory"
+  },
+  "data" : {
+    "id" : "696e45f1-9d3d-42b9-ad53-d58ad241389c",
+    "firstName" : "Жарова",
+    "lastName" : "Виктория",
+    "patronymic" : "Михайловна"
+  }
+}, {
+  "id" : "5bd63574-9fc1-4073-b1ab-95a2c0b896b1",
+  "auth" : {
+    "id" : "5d6a5353-3caa-45bf-9592-90ae8355ef41",
+    "login" : "vorobev_yvan",
+    "password" : "vorobev_yvan"
+  },
+  "data" : {
+    "id" : "2b6b016c-e096-4499-9c57-a91236e044da",
+    "firstName" : "Воробьев",
+    "lastName" : "Иван",
+    "patronymic" : "Олегович"
+  }
+}, {
+  "id" : "3b824453-933c-4289-bf75-22fec9a18f82",
+  "auth" : {
+    "id" : "f7f98f8b-8f49-486f-8971-d6d482bce869",
+    "login" : "subbotyna_vyktory",
+    "password" : "subbotyna_vyktory"
+  },
+  "data" : {
+    "id" : "5f049316-c89f-49d8-a910-3d792972cae0",
+    "firstName" : "Субботина",
+    "lastName" : "Виктория",
+    "patronymic" : "Дмитриевна"
+  }
+}, {
+  "id" : "4206ec0c-26ae-471f-99e7-409619e005bb",
+  "auth" : {
+    "id" : "3e01989d-5cab-4a0f-bd9e-b5b4796bfb8a",
+    "login" : "smyrnova_aryna",
+    "password" : "smyrnova_aryna"
+  },
+  "data" : {
+    "id" : "d8078fb3-4b7e-4e48-8846-e67132467852",
+    "firstName" : "Смирнова",
+    "lastName" : "Арина",
+    "patronymic" : "Давидовна"
+  }
+}, {
+  "id" : "14cad4d8-4447-40a2-b21a-d3e8bcab4cbc",
+  "auth" : {
+    "id" : "f9d60c30-efc1-4680-9936-e70b46a226da",
+    "login" : "pokrovskyi_maksym",
+    "password" : "pokrovskyi_maksym"
+  },
+  "data" : {
+    "id" : "be0cabb5-6782-4d73-b2c8-39d1818a5545",
+    "firstName" : "Покровский",
+    "lastName" : "Максим",
+    "patronymic" : "Владимирович"
+  }
+}, {
+  "id" : "90641e6b-44ae-4b10-80b1-b558d74c347d",
+  "auth" : {
+    "id" : "fa288118-a514-42dd-ba76-8e756e5c612d",
+    "login" : "nykolaev_fdor",
+    "password" : "nykolaev_fdor"
+  },
+  "data" : {
+    "id" : "f708446c-3f22-4178-bfc0-b53d45aab98c",
+    "firstName" : "Николаев",
+    "lastName" : "Фёдор",
+    "patronymic" : "Ярославович"
+  }
+}, {
+  "id" : "8a0c0e73-53c2-4d98-9ef2-440be36aa463",
+  "auth" : {
+    "id" : "8fcd29c1-fd56-43ab-8ca8-7c0d2d04c2db",
+    "login" : "zaharov_matvei",
+    "password" : "zaharov_matvei"
+  },
+  "data" : {
+    "id" : "2e5ca502-6966-4c24-855a-50ce632d01db",
+    "firstName" : "Захаров",
+    "lastName" : "Матвей",
+    "patronymic" : "Дмитриевич"
+  }
+}, {
+  "id" : "d509c6b7-86ec-43ff-8450-7ea42ae322af",
+  "auth" : {
+    "id" : "874e7b93-cb46-403f-81e4-536cecf75938",
+    "login" : "aleksandrov_ptr",
+    "password" : "aleksandrov_ptr"
+  },
+  "data" : {
+    "id" : "d8ed9a90-4e5c-4484-8892-25c34ff0abbe",
+    "firstName" : "Александров",
+    "lastName" : "Пётр",
+    "patronymic" : "Денисович"
+  }
+}, {
+  "id" : "64e7908b-068b-4c60-8c71-233ecf219b7c",
+  "auth" : {
+    "id" : "b53e089d-0923-4541-8bc4-9451e593e663",
+    "login" : "krlova_amyna",
+    "password" : "krlova_amyna"
+  },
+  "data" : {
+    "id" : "556c31ff-ce60-4ec9-8ee1-f65bfc4ab6b4",
+    "firstName" : "Крылова",
+    "lastName" : "Амина",
+    "patronymic" : "Львовна"
+  }
+}, {
+  "id" : "f6a9a95c-3fb7-447d-aa29-c021c20ef407",
+  "auth" : {
+    "id" : "47060b96-8f4b-4af5-aec9-b255e2346f66",
+    "login" : "semenova_eva",
+    "password" : "semenova_eva"
+  },
+  "data" : {
+    "id" : "1ebf8ad3-052a-426b-a517-50fcd27c9a41",
+    "firstName" : "Семенова",
+    "lastName" : "Ева",
+    "patronymic" : "Арсентьевна"
+  }
+}, {
+  "id" : "5b0d709b-6125-4642-b9c5-096db65e7b35",
+  "auth" : {
+    "id" : "f746b0fe-e468-4c9f-892f-d120e2e43478",
+    "login" : "nykyforova_taysy",
+    "password" : "nykyforova_taysy"
+  },
+  "data" : {
+    "id" : "fd759377-54e3-4147-9a13-f5f64a39a8b9",
+    "firstName" : "Никифорова",
+    "lastName" : "Таисия",
+    "patronymic" : "Ильинична"
+  }
+}, {
+  "id" : "50a7120a-8a7f-4171-8327-e8a3c232ab1e",
+  "auth" : {
+    "id" : "c018b1b8-a1b0-4058-8054-8811cc3337f9",
+    "login" : "borysov_lev",
+    "password" : "borysov_lev"
+  },
+  "data" : {
+    "id" : "d47e0866-78d4-4dd4-b442-b4b62a61c5a9",
+    "firstName" : "Борисов",
+    "lastName" : "Лев",
+    "patronymic" : "Тимофеевич"
+  }
+}, {
+  "id" : "dc621e38-ee2a-49cb-a75b-5ffc9d38840d",
+  "auth" : {
+    "id" : "494e7412-4dfc-4b85-af7d-25eadf7d5a51",
+    "login" : "andreev_tymur",
+    "password" : "andreev_tymur"
+  },
+  "data" : {
+    "id" : "d7d1ee5f-5161-4805-81d8-4f9eef917cd3",
+    "firstName" : "Андреев",
+    "lastName" : "Тимур",
+    "patronymic" : "Владимирович"
+  }
+} ]

@@ -1,0 +1,651 @@
+[ {
+  "id" : "9446152f-22f8-4963-8b07-5b73fb7d4dca",
+  "data" : {
+    "id" : "429f639b-52b2-4afc-a13d-2e19c1102ba6",
+    "firstName" : "Лаптева",
+    "lastName" : "Софья",
+    "patronymic" : "Марковна"
+  },
+  "contact" : {
+    "id" : "5918d3c6-9e5d-4061-9844-8b6c6d89c923",
+    "phone" : "+7 (620) 957-87-91",
+    "email" : "lapteva_sof_yth_15@example.com"
+  }
+}, {
+  "id" : "73f4f89b-71bd-482d-b922-05753a74e1f7",
+  "data" : {
+    "id" : "2a075f9e-73d7-479a-9f9f-d964a61f395a",
+    "firstName" : "Цветков",
+    "lastName" : "Виктор",
+    "patronymic" : "Егорович"
+  },
+  "contact" : {
+    "id" : "e64d5917-a562-49da-bccb-af5bff024e58",
+    "phone" : "+7 (846) 360-98-62",
+    "email" : "cvetkov_vyktor_gwy_23@mail.ua"
+  }
+}, {
+  "id" : "3ebcdd3f-c543-46d0-ada4-2d0cfa58ae39",
+  "data" : {
+    "id" : "9b8decda-cc90-4d40-be79-1356a15c5ef2",
+    "firstName" : "Круглов",
+    "lastName" : "Константин",
+    "patronymic" : "Михайлович"
+  },
+  "contact" : {
+    "id" : "a39d394f-c17a-476e-851c-4a8ef75f2ce5",
+    "phone" : "+7 (882) 265-86-17",
+    "email" : "kruglov_konstantyn_ecl_11@ia.net"
+  }
+}, {
+  "id" : "f7d7260f-070a-4861-b1b7-ee7dc98c83ed",
+  "data" : {
+    "id" : "ffbcb219-5b4c-45e0-b6b6-3e83c0caf174",
+    "firstName" : "Королева",
+    "lastName" : "Александра",
+    "patronymic" : "Григорьевна"
+  },
+  "contact" : {
+    "id" : "1dde05f5-19da-4f5c-a11a-b0ff9706fcc1",
+    "phone" : "+7 (761) 966-60-43",
+    "email" : "koroleva_aleksandra_jgw_29@link.uk"
+  }
+}, {
+  "id" : "62d0e9be-b3ee-425a-a1db-795dc90f9e59",
+  "data" : {
+    "id" : "2c2231c9-83ae-4268-b08a-82ba4bbd3347",
+    "firstName" : "Григорьев",
+    "lastName" : "Кирилл",
+    "patronymic" : "Романович"
+  },
+  "contact" : {
+    "id" : "9c642ece-2d87-4f47-ad31-7906445f0e47",
+    "phone" : "+7 (225) 259-96-19",
+    "email" : "grygorev_kyryll_dk_19@rambler.po"
+  }
+}, {
+  "id" : "8d76e972-f08b-43aa-8ed1-c1b124465070",
+  "data" : {
+    "id" : "62e96b95-ca87-4634-8d20-4e63504d50f6",
+    "firstName" : "Черкасова",
+    "lastName" : "Нина",
+    "patronymic" : "Руслановна"
+  },
+  "contact" : {
+    "id" : "217d308e-a29a-4778-8923-bc24b53b2d51",
+    "phone" : "+7 (639) 009-52-06",
+    "email" : "cherkasova_nyna_gw_13@gmail.ru"
+  }
+}, {
+  "id" : "206ddd76-3cb8-42f6-bdd9-78dd59b1d74e",
+  "data" : {
+    "id" : "9b676614-f921-4f05-9798-95058dccc64d",
+    "firstName" : "Федосеева",
+    "lastName" : "Василиса",
+    "patronymic" : "Богдановна"
+  },
+  "contact" : {
+    "id" : "b2762653-f217-478f-a970-fa86ffdba425",
+    "phone" : "+7 (257) 896-86-47",
+    "email" : "fedoseeva_vasylysa_vy_11@mail.net"
+  }
+}, {
+  "id" : "09383735-4fa8-48ba-b04e-164d9c3eb72a",
+  "data" : {
+    "id" : "11207380-a8c2-4062-a1ff-15553c02589a",
+    "firstName" : "Петрова",
+    "lastName" : "Анна",
+    "patronymic" : "Фёдоровна"
+  },
+  "contact" : {
+    "id" : "f061e089-d281-40b3-9cc2-87dd648110e1",
+    "phone" : "+7 (402) 372-91-59",
+    "email" : "petrova_anna_kbp_29@site.ua"
+  }
+}, {
+  "id" : "a53c650d-53e6-440e-aa5f-5798faa46894",
+  "data" : {
+    "id" : "fd608f43-3f9c-4a81-a8a8-ab50a78af88a",
+    "firstName" : "Беляева",
+    "lastName" : "Ясмина",
+    "patronymic" : "Александровна"
+  },
+  "contact" : {
+    "id" : "3871a85f-c55a-4695-9210-60dde3175ef7",
+    "phone" : "+7 (525) 686-80-12",
+    "email" : "beleva_smyna_fnf_12@example.uk"
+  }
+}, {
+  "id" : "b0ea16bf-0547-4d73-8c79-c6810ddbc750",
+  "data" : {
+    "id" : "3cc0a7ff-ff8a-4b40-86fd-1600c0c43a55",
+    "firstName" : "Баранова",
+    "lastName" : "Мирослава",
+    "patronymic" : "Максимовна"
+  },
+  "contact" : {
+    "id" : "4c77cb24-1f74-4988-8c30-73d24745164f",
+    "phone" : "+7 (615) 716-59-17",
+    "email" : "baranova_myroslava_pjh_25@ia.po"
+  }
+}, {
+  "id" : "815115f9-48b3-48bf-ac1f-82023a2b058b",
+  "data" : {
+    "id" : "6d7f181e-c325-4959-9687-52096013412f",
+    "firstName" : "Карпов",
+    "lastName" : "Станислав",
+    "patronymic" : "Дмитриевич"
+  },
+  "contact" : {
+    "id" : "0ebf3dd4-7251-4ff0-a39b-19ff64348256",
+    "phone" : "+7 (636) 937-93-91",
+    "email" : "karpov_stanyslav_qzo_10@ia.org"
+  }
+}, {
+  "id" : "ca37da2f-a010-4ef4-a203-4e7a47e311f5",
+  "data" : {
+    "id" : "0d9d1f0a-a0fe-4c62-9cbf-ade891699fee",
+    "firstName" : "Корнева",
+    "lastName" : "Марьяна",
+    "patronymic" : "Ибрагимовна"
+  },
+  "contact" : {
+    "id" : "154ddc28-a2e8-4202-beac-b3253e71675d",
+    "phone" : "+7 (113) 795-39-82",
+    "email" : "korneva_marna_px_25@ia.net"
+  }
+}, {
+  "id" : "9ac11ede-96b8-4fea-88a7-4ddc79cf0fb1",
+  "data" : {
+    "id" : "745d76ea-42ce-4fc4-a454-fec98051b95e",
+    "firstName" : "Соколова",
+    "lastName" : "Арина",
+    "patronymic" : "Владимировна"
+  },
+  "contact" : {
+    "id" : "97305516-e89b-4979-a85d-084e512783e3",
+    "phone" : "+7 (464) 515-03-52",
+    "email" : "sokolova_aryna_ij_13@site.ru"
+  }
+}, {
+  "id" : "69005f8a-617c-43c9-9c56-c7ef3b72377b",
+  "data" : {
+    "id" : "4fdca106-7891-420e-bce5-99a017a7d72b",
+    "firstName" : "Чистякова",
+    "lastName" : "Варвара",
+    "patronymic" : "Степановна"
+  },
+  "contact" : {
+    "id" : "95210d42-e154-4c0d-9bf3-d34fe70ca895",
+    "phone" : "+7 (243) 538-37-04",
+    "email" : "chystkova_varvara_jq_19@example.ru"
+  }
+}, {
+  "id" : "20cbad35-7ff9-4ff2-aa01-517e8e2fbd73",
+  "data" : {
+    "id" : "45dabf62-a762-4a90-a2ec-ec07a001b7b6",
+    "firstName" : "Тарасова",
+    "lastName" : "Ульяна",
+    "patronymic" : "Всеволодовна"
+  },
+  "contact" : {
+    "id" : "2875b7cb-ae5b-4b67-b8e0-161c137cc225",
+    "phone" : "+7 (566) 957-66-91",
+    "email" : "tarasova_ulna_kdd_23@yandex.net"
+  }
+}, {
+  "id" : "2f946bd4-812b-4947-8065-d628f8f3f2dd",
+  "data" : {
+    "id" : "ebc301a0-d3dc-4580-997f-f005b926575a",
+    "firstName" : "Новикова",
+    "lastName" : "Ольга",
+    "patronymic" : "Ильинична"
+  },
+  "contact" : {
+    "id" : "5c2c34a9-de40-4757-a294-6044e886f6d2",
+    "phone" : "+7 (475) 527-52-26",
+    "email" : "novykova_olga_xgd_26@site.com"
+  }
+}, {
+  "id" : "4841efeb-c1f2-4a47-9570-6ba15d146e61",
+  "data" : {
+    "id" : "3871ed24-5b38-4964-9a13-6dd034919ed9",
+    "firstName" : "Киселев",
+    "lastName" : "Богдан",
+    "patronymic" : "Фёдорович"
+  },
+  "contact" : {
+    "id" : "6a7d2a56-bf31-4f23-b341-4335bf90de19",
+    "phone" : "+7 (001) 005-11-95",
+    "email" : "kyselev_bogdan_ubh_28@gmail.ru"
+  }
+}, {
+  "id" : "1611ae04-3cdb-40da-bfcf-134427028b83",
+  "data" : {
+    "id" : "eccbade9-8ada-42ba-9848-28743c3b446f",
+    "firstName" : "Кузьмин",
+    "lastName" : "Александр",
+    "patronymic" : "Германович"
+  },
+  "contact" : {
+    "id" : "0539dc55-7914-4fb1-ad3c-b0d6063fa7d0",
+    "phone" : "+7 (526) 296-64-75",
+    "email" : "kuzmyn_aleksandr_tn_19@google.com"
+  }
+}, {
+  "id" : "69677c47-89e1-45ae-b2a8-6923e2878756",
+  "data" : {
+    "id" : "5027a9fd-719d-46c8-a2ad-2c32db561c53",
+    "firstName" : "Щербакова",
+    "lastName" : "Екатерина",
+    "patronymic" : "Артемьевна"
+  },
+  "contact" : {
+    "id" : "d9de6338-3be5-4bb0-8251-ac9111057137",
+    "phone" : "+7 (990) 603-12-75",
+    "email" : "scherbakova_ekateryna_zl_15@yandex.ru"
+  }
+}, {
+  "id" : "3491119f-b8cc-4465-809a-c28f0f37e944",
+  "data" : {
+    "id" : "97daed77-d988-4fed-be7a-835aac76b6dc",
+    "firstName" : "Ермаков",
+    "lastName" : "Артём",
+    "patronymic" : "Фёдорович"
+  },
+  "contact" : {
+    "id" : "18898697-b2bb-428c-b3e2-312112842c92",
+    "phone" : "+7 (654) 862-37-27",
+    "email" : "ermakov_artm_pl_26@yandex.org"
+  }
+}, {
+  "id" : "855ae414-a4da-4625-97f9-d1ff00941f4d",
+  "data" : {
+    "id" : "990243e9-9b1b-4be6-aea8-2d394f522ec5",
+    "firstName" : "Шарова",
+    "lastName" : "Вера",
+    "patronymic" : "Никитична"
+  },
+  "contact" : {
+    "id" : "c6621705-79b0-490a-8be2-e34f65981e46",
+    "phone" : "+7 (843) 452-06-14",
+    "email" : "sharova_vera_dpn_11@google.moscow"
+  }
+}, {
+  "id" : "254094a9-8600-41a5-8efe-2af1be19986b",
+  "data" : {
+    "id" : "f94004be-a70f-4916-b13a-54de14896d02",
+    "firstName" : "Михайлова",
+    "lastName" : "Амелия",
+    "patronymic" : "Александровна"
+  },
+  "contact" : {
+    "id" : "229d4e32-2709-46b6-8f12-68673dfd70b4",
+    "phone" : "+7 (127) 746-87-64",
+    "email" : "myhailova_amely_ddi_22@google.com"
+  }
+}, {
+  "id" : "5bba5438-ceb4-408f-99af-43be32f63834",
+  "data" : {
+    "id" : "6d817485-2fed-4f8f-aaf3-854a72faa76e",
+    "firstName" : "Белоусов",
+    "lastName" : "Матвей",
+    "patronymic" : "Владимирович"
+  },
+  "contact" : {
+    "id" : "78915e4c-2f11-4739-9cb5-dd04ca30f6ad",
+    "phone" : "+7 (594) 549-24-25",
+    "email" : "belousov_matvei_eaq_26@site.uk"
+  }
+}, {
+  "id" : "678ebf19-f33b-4603-987a-e29b93a53f3e",
+  "data" : {
+    "id" : "84f6be30-e2ba-473c-a304-d246ff4a5565",
+    "firstName" : "Сергеева",
+    "lastName" : "Вера",
+    "patronymic" : "Львовна"
+  },
+  "contact" : {
+    "id" : "9eaf5202-f00c-42c4-a92f-fd24e221848d",
+    "phone" : "+7 (658) 490-27-97",
+    "email" : "sergeeva_vera_nh_16@rambler.uk"
+  }
+}, {
+  "id" : "bcbf4c27-f81c-4133-a391-067d8d2b8f40",
+  "data" : {
+    "id" : "9b19f274-a316-43a2-9b1c-65ebba2d1c50",
+    "firstName" : "Маркова",
+    "lastName" : "Александра",
+    "patronymic" : "Ярославовна"
+  },
+  "contact" : {
+    "id" : "1f07ecb5-3270-4fec-b074-b6d230d17537",
+    "phone" : "+7 (098) 314-43-27",
+    "email" : "markova_aleksandra_ff_28@mail.com"
+  }
+}, {
+  "id" : "da0792da-d9dc-4a3b-b93b-947da59dcd70",
+  "data" : {
+    "id" : "69b6885e-3c74-441a-8873-072292cedbc9",
+    "firstName" : "Латышева",
+    "lastName" : "Александра",
+    "patronymic" : "Леонидовна"
+  },
+  "contact" : {
+    "id" : "01ce2ff7-5303-4a70-b489-6b1fc69b92d1",
+    "phone" : "+7 (669) 871-92-58",
+    "email" : "latsheva_aleksandra_xtw_17@link.ru"
+  }
+}, {
+  "id" : "315faa12-c6a9-4c97-89b2-99d1081d8f9c",
+  "data" : {
+    "id" : "b054a792-2629-4fd6-9ba4-68896903661a",
+    "firstName" : "Михеев",
+    "lastName" : "Николай",
+    "patronymic" : "Саввич"
+  },
+  "contact" : {
+    "id" : "1ee40092-a600-4f89-b3c6-cad8383e5fd3",
+    "phone" : "+7 (901) 089-53-29",
+    "email" : "myheev_nykolai_cul_17@mail.uk"
+  }
+}, {
+  "id" : "2ef0595e-12a1-4b0c-99db-4465cfa6b7a4",
+  "data" : {
+    "id" : "161a08fb-cad0-43c3-9412-1d91b53ca394",
+    "firstName" : "Коршунов",
+    "lastName" : "Ярослав",
+    "patronymic" : "Платонович"
+  },
+  "contact" : {
+    "id" : "c8a750ff-a461-4ce8-937c-9dcd920b20b9",
+    "phone" : "+7 (133) 023-19-65",
+    "email" : "korshunov_roslav_ph_12@gmail.ua"
+  }
+}, {
+  "id" : "ce8c6775-4d70-4002-8629-e49b9a59de70",
+  "data" : {
+    "id" : "aecf264d-0b92-4efd-b9d2-2fb2e00fe465",
+    "firstName" : "Добрынин",
+    "lastName" : "Михаил",
+    "patronymic" : "Александрович"
+  },
+  "contact" : {
+    "id" : "4c9e6980-247b-48f6-b647-d91fe4246465",
+    "phone" : "+7 (092) 728-66-84",
+    "email" : "dobrnyn_myhayl_qt_27@gmail.po"
+  }
+}, {
+  "id" : "babafa3d-82da-4ffa-b5b6-47600aa3c640",
+  "data" : {
+    "id" : "8ecc9983-306d-40f2-830f-c0aff5aa7b59",
+    "firstName" : "Наумов",
+    "lastName" : "Михаил",
+    "patronymic" : "Данилович"
+  },
+  "contact" : {
+    "id" : "73c0d069-2730-4395-9b17-c6c08842a667",
+    "phone" : "+7 (147) 151-71-90",
+    "email" : "naumov_myhayl_ppl_27@mail.ua"
+  }
+}, {
+  "id" : "e0b8cc6b-a365-4f4e-a92b-0eff1299db09",
+  "data" : {
+    "id" : "e7319d01-cc0a-47e8-b4a6-fa52d489741e",
+    "firstName" : "Козловская",
+    "lastName" : "Александра",
+    "patronymic" : "Андреевна"
+  },
+  "contact" : {
+    "id" : "67625963-e3e0-446c-823f-9a8301e7889c",
+    "phone" : "+7 (850) 859-10-65",
+    "email" : "kozlovska_aleksandra_do_27@yandex.moscow"
+  }
+}, {
+  "id" : "1671ccdc-4822-4b01-8cac-8f5d13494e8d",
+  "data" : {
+    "id" : "e5fb65d8-e083-48aa-b8fa-8376c0e04d95",
+    "firstName" : "Лебедева",
+    "lastName" : "Арина",
+    "patronymic" : "Семёновна"
+  },
+  "contact" : {
+    "id" : "acd4deba-7a86-47a5-9b84-5ffb9ecd5e24",
+    "phone" : "+7 (340) 015-62-25",
+    "email" : "lebedeva_aryna_fr_15@example.po"
+  }
+}, {
+  "id" : "49f34b1e-83d6-4c9b-bec8-163e9ca503f4",
+  "data" : {
+    "id" : "3490c8f0-7c00-43f0-b135-5a389bc2dc95",
+    "firstName" : "Серов",
+    "lastName" : "Александр",
+    "patronymic" : "Максимович"
+  },
+  "contact" : {
+    "id" : "baffc4f4-1366-46c0-9cbf-fcb9e1289d04",
+    "phone" : "+7 (069) 645-95-30",
+    "email" : "serov_aleksandr_ds_17@mail.uk"
+  }
+}, {
+  "id" : "72b49ca1-6cfa-460a-81d5-74af8a9d82f7",
+  "data" : {
+    "id" : "36092c82-3b84-437f-8a2d-8aca631de806",
+    "firstName" : "Семенов",
+    "lastName" : "Давид",
+    "patronymic" : "Елисеевич"
+  },
+  "contact" : {
+    "id" : "504d1f92-f00d-4ee4-907d-0ffab34f5506",
+    "phone" : "+7 (343) 291-25-34",
+    "email" : "semenov_davyd_hpn_23@ia.org"
+  }
+}, {
+  "id" : "8d749652-9dbd-4499-8f44-636fb517f839",
+  "data" : {
+    "id" : "f326caae-87f4-403f-a8d0-29b97e0b9ad8",
+    "firstName" : "Степанов",
+    "lastName" : "Богдан",
+    "patronymic" : "Дмитриевич"
+  },
+  "contact" : {
+    "id" : "264032a1-a5e7-4b61-8962-186a402f6885",
+    "phone" : "+7 (516) 318-48-65",
+    "email" : "stepanov_bogdan_mvp_18@mail.uk"
+  }
+}, {
+  "id" : "538df7fa-5530-47cc-b5ee-a3735d9f56c0",
+  "data" : {
+    "id" : "fc3c6d0f-1740-4bd1-9524-beaba7762a2e",
+    "firstName" : "Александров",
+    "lastName" : "Максим",
+    "patronymic" : "Дмитриевич"
+  },
+  "contact" : {
+    "id" : "97b0cd2f-93e2-45cb-9aad-466d5219afdb",
+    "phone" : "+7 (581) 766-65-90",
+    "email" : "aleksandrov_maksym_gd_20@ia.uk"
+  }
+}, {
+  "id" : "45eea9a4-1768-4789-b4ae-89f3c408e65d",
+  "data" : {
+    "id" : "025b7cf2-c345-4b8e-85c2-fbea90b97116",
+    "firstName" : "Семенов",
+    "lastName" : "Артём",
+    "patronymic" : "Михайлович"
+  },
+  "contact" : {
+    "id" : "6f63f0a2-97a9-48b9-ad44-4a1e9d9dc855",
+    "phone" : "+7 (777) 254-61-73",
+    "email" : "semenov_artm_kp_19@link.net"
+  }
+}, {
+  "id" : "cd534a14-94ae-4a57-a925-6303df9f16aa",
+  "data" : {
+    "id" : "ba4fcaaa-820c-47a1-aa68-4a333921f1bb",
+    "firstName" : "Соболев",
+    "lastName" : "Александр",
+    "patronymic" : "Александрович"
+  },
+  "contact" : {
+    "id" : "dc30ee3d-4333-41ba-8cc6-a0397f12367f",
+    "phone" : "+7 (198) 708-22-81",
+    "email" : "sobolev_aleksandr_cyh_11@example.ru"
+  }
+}, {
+  "id" : "bdb9a487-c90c-4efe-b41f-a58e421363bc",
+  "data" : {
+    "id" : "692be501-4f0c-49a0-a666-a285ae77f43c",
+    "firstName" : "Дмитриева",
+    "lastName" : "Анастасия",
+    "patronymic" : "Яновна"
+  },
+  "contact" : {
+    "id" : "5d3263e9-17d1-4ce3-b0b4-6b7e17ed8658",
+    "phone" : "+7 (997) 212-63-27",
+    "email" : "dmytryeva_anastasy_nd_26@google.net"
+  }
+}, {
+  "id" : "2034697f-e8fb-466f-96df-bf2bf1947c81",
+  "data" : {
+    "id" : "e39c2fed-ec4d-4be3-823c-c95d80bb8a37",
+    "firstName" : "Попов",
+    "lastName" : "Тимур",
+    "patronymic" : "Фёдорович"
+  },
+  "contact" : {
+    "id" : "b0cb1d77-6f58-43d9-989b-43c914f77d2e",
+    "phone" : "+7 (451) 074-10-23",
+    "email" : "popov_tymur_tgp_17@link.org"
+  }
+}, {
+  "id" : "b1f56085-a256-4b82-ba89-57fcfe887669",
+  "data" : {
+    "id" : "bb560db5-1892-4b9d-aa23-47cb23f22b09",
+    "firstName" : "Крючкова",
+    "lastName" : "Анастасия",
+    "patronymic" : "Константиновна"
+  },
+  "contact" : {
+    "id" : "9bcc3eec-5681-42a4-bbf7-af0e58206e65",
+    "phone" : "+7 (319) 860-78-09",
+    "email" : "krchkova_anastasy_ndh_13@yandex.net"
+  }
+}, {
+  "id" : "10639cb7-3c86-46c6-b602-4ed3c4f1c29a",
+  "data" : {
+    "id" : "47da0ea6-147b-46e1-a4bf-c10b82063b50",
+    "firstName" : "Анохина",
+    "lastName" : "Валерия",
+    "patronymic" : "Дмитриевна"
+  },
+  "contact" : {
+    "id" : "4a3a8ac7-ee98-4d52-a8d1-515994b0c1f9",
+    "phone" : "+7 (758) 513-11-21",
+    "email" : "anohyna_valery_hx_13@google.moscow"
+  }
+}, {
+  "id" : "21149058-a331-4432-a070-352931fa8f02",
+  "data" : {
+    "id" : "cb1902f6-32af-49d5-987a-65fe38d8c1ee",
+    "firstName" : "Баранов",
+    "lastName" : "Илья",
+    "patronymic" : "Михайлович"
+  },
+  "contact" : {
+    "id" : "0dfb05c1-0761-4a9b-a59d-f9f164eb5213",
+    "phone" : "+7 (493) 998-13-06",
+    "email" : "baranov_yl_pj_20@ia.com"
+  }
+}, {
+  "id" : "9ccb61c3-e2b6-4178-81f0-8c66895cd9ff",
+  "data" : {
+    "id" : "6cd54c9c-d25c-47aa-ba03-021ffb3b33c6",
+    "firstName" : "Назарова",
+    "lastName" : "Виктория",
+    "patronymic" : "Николаевна"
+  },
+  "contact" : {
+    "id" : "a76b0728-7df9-47d3-948d-d37647976872",
+    "phone" : "+7 (992) 487-06-18",
+    "email" : "nazarova_vyktory_fzj_10@ia.uk"
+  }
+}, {
+  "id" : "8c249db9-3007-425c-90b8-1f706f1820c3",
+  "data" : {
+    "id" : "08103450-da9b-4ace-9a6a-03e3188a221d",
+    "firstName" : "Ушаков",
+    "lastName" : "Лев",
+    "patronymic" : "Львович"
+  },
+  "contact" : {
+    "id" : "6711032b-0e38-4698-bad5-5e66bf737423",
+    "phone" : "+7 (428) 092-44-44",
+    "email" : "ushakov_lev_mz_26@gmail.ua"
+  }
+}, {
+  "id" : "955db4ea-8042-48c6-9805-34c5e86693d3",
+  "data" : {
+    "id" : "4e2e967b-0a25-4003-bc82-bc2b9f793daf",
+    "firstName" : "Шилова",
+    "lastName" : "Полина",
+    "patronymic" : "Константиновна"
+  },
+  "contact" : {
+    "id" : "7b712cf8-420c-439a-916a-2f38f721af04",
+    "phone" : "+7 (896) 356-26-57",
+    "email" : "shylova_polyna_bju_13@mail.po"
+  }
+}, {
+  "id" : "749a847b-098f-456e-8599-a279dc2c10f3",
+  "data" : {
+    "id" : "355db167-6f38-4aab-af4f-13912ba31dda",
+    "firstName" : "Петрова",
+    "lastName" : "Ульяна",
+    "patronymic" : "Эмильевна"
+  },
+  "contact" : {
+    "id" : "127a2521-624a-4cff-a3b0-a8ec9e1c1226",
+    "phone" : "+7 (549) 920-17-44",
+    "email" : "petrova_ulna_cba_13@site.po"
+  }
+}, {
+  "id" : "cb07e49f-390c-40ad-9cdc-6662abc212cd",
+  "data" : {
+    "id" : "5433051f-3e58-43c8-8f4e-72cef378005e",
+    "firstName" : "Белова",
+    "lastName" : "Алиса",
+    "patronymic" : "Денисовна"
+  },
+  "contact" : {
+    "id" : "810bf94d-3265-48de-9c63-4e31aff44f4c",
+    "phone" : "+7 (737) 028-42-57",
+    "email" : "belova_alysa_cmu_14@example.com"
+  }
+}, {
+  "id" : "9a28c0f7-1487-481e-877e-144ca4257d48",
+  "data" : {
+    "id" : "63cff842-a836-4b13-97b5-e70311c96588",
+    "firstName" : "Андреева",
+    "lastName" : "Анна",
+    "patronymic" : "Артёмовна"
+  },
+  "contact" : {
+    "id" : "74487035-8ae4-4b86-b6b4-a9e67f0c19fc",
+    "phone" : "+7 (820) 572-15-78",
+    "email" : "andreeva_anna_lgm_18@example.moscow"
+  }
+}, {
+  "id" : "f5a3d2d6-fb66-448a-a145-34c8a3097d1b",
+  "data" : {
+    "id" : "55da7432-9fe1-4ef1-a881-b2c1624399b6",
+    "firstName" : "Румянцев",
+    "lastName" : "Макар",
+    "patronymic" : "Даниилович"
+  },
+  "contact" : {
+    "id" : "248d8303-630a-4f92-aaf3-88c2b29f477d",
+    "phone" : "+7 (710) 116-35-27",
+    "email" : "rumncev_makar_ms_22@example.uk"
+  }
+} ]
