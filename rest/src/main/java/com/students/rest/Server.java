@@ -159,7 +159,7 @@ public class Server {
 			cfg.host = System.getProperty("SERVER_HOST");
 			cfg.secret = System.getProperty("SECURITY_SECRET");
 			cfg.salt = System.getProperty("SECURITY_SALT");
-			cfg.saltPosition = Integer.valueOf(System.getProperty("SECURIT_SALT_INDEX"));
+			cfg.saltPosition = Integer.valueOf(System.getProperty("SECURITY_SALT_INDEX"));
 		}
 		SpringApplication.run(Server.class, args);
 		
