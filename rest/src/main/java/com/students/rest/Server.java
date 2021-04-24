@@ -167,16 +167,20 @@ public class Server {
 		SpringApplication.run(Server.class, args);
 		
 		var thread = new Thread(() -> {
-			var scanner = new Scanner(System.in);
-			String cmd;
-			
-			while ((cmd = scanner.next()) != null) {
-				switch(cmd) {
-					case "exit": System.exit(0); 
+			try {
+				var scanner = new Scanner(System.in);
+				String cmd;
+				
+				while ((cmd = scanner.next()) != null) {
+					switch(cmd) {
+						case "exit": System.exit(0); 
+					}
 				}
+				
+				scanner.close();
+			} catch(Throwable t) {
+				System.err.println("Can not open Scanner");
 			}
-			
-			scanner.close();
 		});
 		thread.start();
 	}
