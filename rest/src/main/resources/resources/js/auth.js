@@ -1,7 +1,9 @@
-function logout() {
+function logout(silent) {
 	process_logout()
-	localStorage.removeItem("token")
-	popup("Вы вышли из аккаунта")
+	if (!silent) {
+		localStorage.removeItem("token")
+		popup("Вы вышли из аккаунта")
+	}
 }
 
 function process_logout(start) {
@@ -24,16 +26,18 @@ function process_login() {
 	document.body.append(__main)
 	fadeIn(__main)
 	
-	TeacherAPI.get((info) => __account.innerHTML = info.data.firstName + " " + (info.data.patronymic || "") + " " + info.data.lastName)
+	TeacherAPI.get((info) => {
+	    __account.innerHTML = info.data.firstName + " " + (info.data.patronymic || "") + " " + info.data.lastName
+	})
 }
 
-events.onload.push(() => {
+auth_onload = function() {
 	if (logged_in()) {
 		process_login()
 	} else {
 		process_logout(true)
 	}
-})
+}
 
 //default auth - carrot/33980e243add
 function login() {

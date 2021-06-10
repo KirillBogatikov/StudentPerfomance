@@ -112,6 +112,10 @@ public class TeacherService {
 						auth.setPasswordHash(Hash.hash(auth.getPassword(), salt, saltPosition));
 					}
 					
+					t.setId(UUID.randomUUID());
+					auth.setId(UUID.randomUUID());
+					t.getData().setId(UUID.randomUUID());
+					
 					repo.insert(t);
 					return new SaveResult(t.getId());
 				} else {

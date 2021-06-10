@@ -1,13 +1,16 @@
 Teacher = {}
 
 Teacher.add = function() {
-	Teacher.edit({})
+    Teacher.__actual = {}
+	Teacher.edit()
 }
 
 Teacher.edit = function(i) {
-	let t = __teachers_cache[i]
-	Teacher.__actual = t
-	Teacher.__init_form(t || {})
+	if (i) {
+		Teacher.__actual = __teachers_cache[i]
+	}
+
+	Teacher.__init_form(Teacher.__actual)
 	
 	__teachers.page.append(__teachers.container)
 	fadeIn(__teachers.container)
@@ -45,7 +48,7 @@ Teacher.save = function() {
 	})
 }
 
-Teacher.__init_form = function(t, isNew) {
+Teacher.__init_form = function(t) {
 	let d = t['data'] || {}
 	let a = t['auth'] || {}
 	
@@ -54,6 +57,7 @@ Teacher.__init_form = function(t, isNew) {
 		last_name.value = d['lastName'] || ""
 		patronymic.value = d['patronymic'] || ""
 		login.value = a['login'] || ""
+		password.value = ""
 	}
 }
 

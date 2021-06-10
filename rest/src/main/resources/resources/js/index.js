@@ -129,6 +129,8 @@ onload = function() {
 		query(".page", true).forEach(t => t.remove())
 	})();
 	
+	auth_onload()
+	
 	if (logged_in()) {
 		let query = (window.location.search + "").split("?")[1]
 		if (query) {
